@@ -1,5 +1,9 @@
 require 'socket'
 class Server
+  def initialize
+    @count = 0
+  end
+
   def server_start #we read request from client
     tcp_server = TCPServer.new(9292)
     client = tcp_server.accept
@@ -19,13 +23,14 @@ class Server
   end
 
   def response(request_lines, client)
+    @count +=1
     puts "Got this request:"
     puts request_lines.inspect
     #print response
     puts "Sending response."
     response = "<pre>" + request_lines.join("\n") + "</pre>"
     output = "<html><head></head><body>#{response}</body></html>"
-    headers = "Hello, World!(#{count})"
+    headers = "Hello, World!(#{@count})"
     # headers = ["HELLOOOOOOO",
     #           "date: #{Time.now.strftime('%a, %e %b %Y %H:%M:%S %z')}",
     #           "server: ruby",
