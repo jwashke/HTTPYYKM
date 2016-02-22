@@ -5,14 +5,17 @@ class Server
   end
 
   def server_start #we read request from client
+
     tcp_server = TCPServer.new(9292)
     client = tcp_server.accept
+
     request(client)
+# loop do
+
     end
     #when the program runs, it'll hang on that gets method call waiting
     #for a request to come in. When it arrives it'll get read
     #and stored into request_lines
-# loop do
     def request(client)   #store all request lines in array
     puts "Ready for a request"
     request_lines = []
