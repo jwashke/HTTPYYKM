@@ -3,16 +3,28 @@ require 'minitest/pride'
 require_relative '../lib/http/distributor'
 
 class DistributorTest < Minitest::Test
-  def test_distributor_instantiates
-    distributor = Distributor.new
-    distributor.instance_of? Distributor
+  def setup
+    @distributor = HTTP::Distributor.new
   end
 
-  def test_response_says_hello_world_with_number
-    skip
-    distributor = Distributor.new
-    distributor.response
-    assert_equal "Hello World (0)", response(0)
+  def test_distributor_instantiates
+    @distributor.instance_of? HTTP::Distributor
+  end
+
+  def distributor_initalizes_shutdown_as_false
+    refute @distributor.shutdown
+  end
+
+  def distributor_initalizes_total_requests_as_zero
+    assert_equal 0, @distributor.total_requests
+  end
+
+  def distributor_initalizes_count_as_zero
+    assert_equal 0, @distributor.count
+  end
+
+  def test_response_says_hello_world_with_get_path_hello
+    assert_equal "Hello World (1)", @distributor.get_path_hello
   end
 
   def test_response_says_hello_world_with_different_number
@@ -35,7 +47,6 @@ class DistributorTest < Minitest::Test
     assert_equal " ", distributor.process_request(X, 5)[1]
   end
 
-  
   def test_parsing_file_outputs_correct_diagnostics_for_accept
     skip
     distributor = Distributor.new

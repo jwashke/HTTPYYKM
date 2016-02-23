@@ -20,6 +20,7 @@ module HTTP
     end
 
     def parse_request(raw_request)
+      binding.pry
       @total_requests += 1
       @request = RequestParser.new
       @request.parse_request(raw_request)
