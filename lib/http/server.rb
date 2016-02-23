@@ -9,8 +9,8 @@ class Server
 
   def server_start #we read request from client
     tcp_server = TCPServer.new(9292)
-    client = tcp_server.accept
     loop do
+      client = tcp_server.accept
       request(client)
     end
   end
@@ -25,9 +25,7 @@ class Server
     end
     distributor = Distributor.new
     @response = distributor.process_request(request_lines, @count)
-
     print_response(@response, client)
-
   end
 
   def print_response(request_lines, client)
@@ -36,7 +34,7 @@ class Server
     puts request_lines.inspect
     #print response
     puts "Sending response."
-    #binding.pry
+    binding.pry
 
     client.puts @response.last
     client.puts @response.first
