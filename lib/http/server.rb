@@ -1,6 +1,7 @@
 require 'pry'
 require 'socket'
 require_relative 'distributor'
+
 class Server
   def initialize
     @count = 0

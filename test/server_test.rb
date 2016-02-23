@@ -3,10 +3,15 @@ require 'minitest/pride'
 require_relative '../lib/http/server'
 
 class ServerTest < Minitest::Test
-def test_response_says_hello_world_with_number
-  s = Server.new
-  s.response
-  assert_equal "Hello World (0)", headers
-end
+  def test_server_instantiates
+    server = Server.new
+    server.instance_of? Server
+  end
+  
+  def test_server_listens_on_port_9292
+    skip
+    server = Server.new
+    assert_equal 9292 server.port
+  end
 
 end
