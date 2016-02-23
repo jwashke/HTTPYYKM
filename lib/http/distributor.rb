@@ -11,6 +11,7 @@ module HTTP
     attr_reader :header, :output
 
     def initialize
+      @word_search = WordSearch.new
       @request
       @header
       @total_requests = 0
@@ -68,6 +69,11 @@ module HTTP
       @count += 1
       output = "Hello World! (#{@count})"
       generate_output(output)
+    end
+
+    def get_path_word_search
+      word = @request.word
+      @word_search.check_word(word)
     end
 
     def generate_output(output, status_code = "200 OK")

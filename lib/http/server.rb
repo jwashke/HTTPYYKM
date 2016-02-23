@@ -20,6 +20,7 @@ module HTTP
         distributor.parse_request(request)
         response = distributor.output
         header = distributor.header
+        puts request
         client.puts header
         client.puts response
         break if distributor.shutdown?

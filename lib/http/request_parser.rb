@@ -14,9 +14,12 @@ module HTTP
 
     def parse_first_line
       first_line = split_line(0)
+      split_path = first_line[1].split("?")
+      # param = split_path[1].split("=")
       @request_hash[:verb]     = first_line[0]
       @request_hash[:path]     = first_line[1]
       @request_hash[:protocol] = first_line[2]
+      # @request_hash[:word]     = param[1]
     end
 
     def parse_second_line
