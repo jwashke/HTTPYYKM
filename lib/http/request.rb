@@ -7,7 +7,7 @@ class Request
   end
 
   def parsing_file
-    binding.pry
+    # binding.pry
 
 
   end
