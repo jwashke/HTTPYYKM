@@ -209,6 +209,21 @@ class DistributorTest < Minitest::Test
     assert_equal "date: #{time}", @distributor.header.split("\n")[1].chomp
   end
 
+  def test_shutdown_returns_correct_total_requests
+    raw_request = ["GET /shutdown HTTP/1.1",
+                   "Host: 127.0.0.1:9292",
+                   "Connection: keep-alive",
+                   "Cache-Control: no-cache",
+                   "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36",
+                   "Postman-Token: 13cf4695-cc4b-f80e-709c-2f46dbdd8b29",
+                   "Accept: */*",
+                   "Accept-Encoding: gzip, deflate, sdch",
+                   "Accept-Language: en-US,en;q=0.8"]
+    @distributor.parse_request(raw_request)
+    assert_equal "<html><head></head><body><pre>Total Requests: 1</pre></body></html>", @distributor.output
+
+  end
+
 
 
 end
