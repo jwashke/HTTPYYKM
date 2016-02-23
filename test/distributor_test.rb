@@ -80,8 +80,7 @@ class DistributorTest < Minitest::Test
     assert @distributor.redirect_request == @distributor.get_path_root
   end
 
-  def test_redirect_request_sends_to_root
-    skip
+  def test_redirect_request_sends_to_root_and_200_status
     raw_request = ["GET / HTTP/1.1",
                    "Host: 127.0.0.1:9292",
                    "Connection: keep-alive",
@@ -93,14 +92,7 @@ class DistributorTest < Minitest::Test
                    "Accept-Language: en-US,en;q=0.8"]
     @distributor.parse_request(raw_request)
     time = Time.new.strftime("%a, %e %b %Y %H:%M:%S %z")
-    output = "http/1.1 200 OK\r
-date: #{time} -0700\r
-server: ruby\r
-content-type: text/html; charset=iso-8859-1\r
-content-length: 141\r
-\r
-" #issue with printing these lines
-    assert_equal output, @distributor.redirect_request
+    assert_equal "200", @distributor.redirect_request.split[1]
   end
 
   def test_redirect_request_sends_to_hello
@@ -200,6 +192,21 @@ content-length: 141\r
                    "Accept-Language: en-US,en;q=0.8"]
     @distributor.parse_request(raw_request)
     assert_equal "http/1.1 404 Not Found", @distributor.header.split("\n")[0].chomp
+  end
+
+  def test_redirect_request_gives_date_and_time_with_datetime_path
+    raw_request = ["GET /datetime HTTP/1.1",
+                   "Host: 127.0.0.1:9292",
+                   "Connection: keep-alive",
+                   "Cache-Control: no-cache",
+                   "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36",
+                   "Postman-Token: 13cf4695-cc4b-f80e-709c-2f46dbdd8b29",
+                   "Accept: */*",
+                   "Accept-Encoding: gzip, deflate, sdch",
+                   "Accept-Language: en-US,en;q=0.8"]
+    @distributor.parse_request(raw_request)
+    time = Time.new.strftime("%a, %e %b %Y %H:%M:%S %z")
+    assert_equal "date: #{time}", @distributor.header.split("\n")[1].chomp
   end
 
 
