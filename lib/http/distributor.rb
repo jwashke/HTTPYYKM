@@ -66,6 +66,7 @@ module HTTP
     end
 
     def get_path_hello
+      # binding.pry
       @count += 1
       output = "Hello World! (#{@count})"
       generate_output(output)

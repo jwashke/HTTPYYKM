@@ -22,16 +22,17 @@ class DistributorTest < Minitest::Test
   def distributor_initalizes_count_as_zero
     assert_equal 0, @distributor.count
   end
-
+# meta wow: true
   def test_response_says_hello_world_with_get_path_hello
-    assert_equal "Hello World (1)", @distributor.get_path_hello
+    @distributor.get_path_hello
+    assert_equal "<html><head></head><body><pre>Hello World! (1)</pre></body></html>", @distributor.output
   end
 
   def test_response_says_hello_world_with_different_number
-    skip
-    distributor = Distributor.new
-    distributor.response
-    assert_equal "Hello World (25)", response(25)
+    @distributor.get_path_hello
+    @distributor.get_path_hello
+    @distributor.get_path_hello
+    assert_equal "<html><head></head><body><pre>Hello World! (3)</pre></body></html>", @distributor.output
   end
 
   def test_output_passes_response_to_response_method
