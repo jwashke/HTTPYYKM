@@ -189,7 +189,6 @@ content-length: 141\r
   end
 
   def test_redirect_request_sends_to_404_if_incorrect_path_different
-    skip
     raw_request = ["GET /wowza HTTP/1.1",
                    "Host: 127.0.0.1:9292",
                    "Connection: keep-alive",
@@ -200,7 +199,7 @@ content-length: 141\r
                    "Accept-Encoding: gzip, deflate, sdch",
                    "Accept-Language: en-US,en;q=0.8"]
     @distributor.parse_request(raw_request)
-    assert_equal "404 Not Found", status_code
+    assert_equal "http/1.1 404 Not Found", @distributor.header.split("\n")[0].chomp
   end
 
 
