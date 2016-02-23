@@ -221,8 +221,31 @@ class DistributorTest < Minitest::Test
                    "Accept-Language: en-US,en;q=0.8"]
     @distributor.parse_request(raw_request)
     assert_equal "<html><head></head><body><pre>Total Requests: 1</pre></body></html>", @distributor.output
+  end
+
+  def test_generate_output_works_properly_for_shutdown
+    generated_output = @distributor.generate_output("Total Requests: 1")
+    assert_equal "http/1.1 200 OK", generated_output.split("\n")[0].chomp
+  end
+
+  def test_get_header_produces_correct_header_for_shutdown
+    skip
+    output = "<html><head></head><body><pre>Total Requests: 1</pre></body></html>"
+    status_code = "200 OK"
+    get_header_output = @distributor.get_header(output, status_code)
+    assert_equal " ", get_header_output
+    assert_equal " ", get_header_output.output
+  end
+
+  def test_request_diagnostic_returns_correct_output
 
   end
+
+  def test_shutdown_returns_correct_output
+
+  end
+
+
 
 
 
