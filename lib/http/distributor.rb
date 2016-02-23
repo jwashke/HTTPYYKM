@@ -1,6 +1,6 @@
-require_relative 'html_generator'
-require_relative 'header_generator'
-require_relative 'request_parser'
+require 'html_generator'
+require 'header_generator'
+require 'request_parser'
 require 'pry'
 
 module HTTP

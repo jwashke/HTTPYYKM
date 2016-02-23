@@ -1,6 +1,9 @@
+lib_folder = File.expand_path(__dir__)
+$LOAD_PATH << lib_folder
+
 require 'pry'
 require 'socket'
-require_relative 'distributor'
+require 'distributor'
 module HTTP
   class Server
 
