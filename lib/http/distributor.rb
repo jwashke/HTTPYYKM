@@ -16,6 +16,7 @@ module HTTP
       @total_requests = 0
       @count = 0
       @output
+      @shutdown = false
     end
 
     def parse_request(raw_request)
@@ -57,6 +58,11 @@ module HTTP
       generate_output(output)
     end
 
+    def get_path_shutdown
+      @shutdown = true
+      output = "Total Requests: #{@total_requests}"
+      generate_output(output)
+    end
 
     def get_path_hello
       @count += 1
@@ -82,6 +88,10 @@ module HTTP
       "Port: #{@request.port}\n" +
       "Origin: #{@request.origin}\n" +
       "Accept: #{@request.accept}\n"
-              end
+    end
+
+    def shutdown?
+      @shutdown
+    end
   end
 end

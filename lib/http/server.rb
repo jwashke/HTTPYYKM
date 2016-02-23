@@ -20,6 +20,7 @@ module HTTP
         #binding.pry
         client.puts header
         client.puts response
+        break if distributor.shutdown?
       end
       client.close
     end
