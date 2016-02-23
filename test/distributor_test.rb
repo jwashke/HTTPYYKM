@@ -52,7 +52,7 @@ class DistributorTest < Minitest::Test
   end
 
   def test_parse_request_instantiates_request_parser
-    # skip
+    skip
     raw_request = ["GET / HTTP/1.1",
                    "Host: 127.0.0.1:9292",
                    "Connection: keep-alive",
@@ -65,6 +65,144 @@ class DistributorTest < Minitest::Test
     @distributor.parse_request(raw_request)
     assert @request.instance_of? HTTP::RequestParser
   end
+
+  def test_redirect_request_sends_to_get_path_root
+    raw_request = ["GET / HTTP/1.1",
+                   "Host: 127.0.0.1:9292",
+                   "Connection: keep-alive",
+                   "Cache-Control: no-cache",
+                   "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36",
+                   "Postman-Token: 13cf4695-cc4b-f80e-709c-2f46dbdd8b29",
+                   "Accept: */*",
+                   "Accept-Encoding: gzip, deflate, sdch",
+                   "Accept-Language: en-US,en;q=0.8"]
+    @distributor.parse_request(raw_request)
+    assert @distributor.redirect_request == @distributor.get_path_root
+  end
+
+  def test_redirect_request_sends_to_root
+    skip
+    raw_request = ["GET / HTTP/1.1",
+                   "Host: 127.0.0.1:9292",
+                   "Connection: keep-alive",
+                   "Cache-Control: no-cache",
+                   "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36",
+                   "Postman-Token: 13cf4695-cc4b-f80e-709c-2f46dbdd8b29",
+                   "Accept: */*",
+                   "Accept-Encoding: gzip, deflate, sdch",
+                   "Accept-Language: en-US,en;q=0.8"]
+    @distributor.parse_request(raw_request)
+    time = Time.new.strftime("%a, %e %b %Y %H:%M:%S %z")
+    output = "http/1.1 200 OK\r
+date: #{time} -0700\r
+server: ruby\r
+content-type: text/html; charset=iso-8859-1\r
+content-length: 141\r
+\r
+" #issue with printing these lines
+    assert_equal output, @distributor.redirect_request
+  end
+
+  def test_redirect_request_sends_to_hello
+    raw_request = ["GET /hello HTTP/1.1",
+                   "Host: 127.0.0.1:9292",
+                   "Connection: keep-alive",
+                   "Cache-Control: no-cache",
+                   "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36",
+                   "Postman-Token: 13cf4695-cc4b-f80e-709c-2f46dbdd8b29",
+                   "Accept: */*",
+                   "Accept-Encoding: gzip, deflate, sdch",
+                   "Accept-Language: en-US,en;q=0.8"]
+    @distributor.parse_request(raw_request)
+    assert @distributor.redirect_request == @distributor.get_path_hello
+  end
+
+  def test_redirect_request_will_not_sends_to_datetime_if_different_path_set
+    raw_request = ["GET /hello HTTP/1.1",
+                   "Host: 127.0.0.1:9292",
+                   "Connection: keep-alive",
+                   "Cache-Control: no-cache",
+                   "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36",
+                   "Postman-Token: 13cf4695-cc4b-f80e-709c-2f46dbdd8b29",
+                   "Accept: */*",
+                   "Accept-Encoding: gzip, deflate, sdch",
+                   "Accept-Language: en-US,en;q=0.8"]
+    @distributor.parse_request(raw_request)
+    refute @distributor.redirect_request == @distributor.get_path_datetime
+  end
+
+  def test_redirect_request_sends_to_datetime
+    raw_request = ["GET /datetime HTTP/1.1",
+                   "Host: 127.0.0.1:9292",
+                   "Connection: keep-alive",
+                   "Cache-Control: no-cache",
+                   "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36",
+                   "Postman-Token: 13cf4695-cc4b-f80e-709c-2f46dbdd8b29",
+                   "Accept: */*",
+                   "Accept-Encoding: gzip, deflate, sdch",
+                   "Accept-Language: en-US,en;q=0.8"]
+    @distributor.parse_request(raw_request)
+    assert @distributor.redirect_request == @distributor.get_path_datetime
+  end
+
+  def test_redirect_request_sends_to_shutdown
+    raw_request = ["GET /shutdown HTTP/1.1",
+                   "Host: 127.0.0.1:9292",
+                   "Connection: keep-alive",
+                   "Cache-Control: no-cache",
+                   "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36",
+                   "Postman-Token: 13cf4695-cc4b-f80e-709c-2f46dbdd8b29",
+                   "Accept: */*",
+                   "Accept-Encoding: gzip, deflate, sdch",
+                   "Accept-Language: en-US,en;q=0.8"]
+    @distributor.parse_request(raw_request)
+    assert @distributor.redirect_request == @distributor.get_path_shutdown
+  end
+
+  def test_redirect_request_sends_to_shutdown
+    skip
+    raw_request = ["GET /word_search HTTP/1.1",
+                   "Host: 127.0.0.1:9292",
+                   "Connection: keep-alive",
+                   "Cache-Control: no-cache",
+                   "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36",
+                   "Postman-Token: 13cf4695-cc4b-f80e-709c-2f46dbdd8b29",
+                   "Accept: */*",
+                   "Accept-Encoding: gzip, deflate, sdch",
+                   "Accept-Language: en-US,en;q=0.8"]
+    @distributor.parse_request(raw_request)
+    assert @distributor.redirect_request == @distributor.word_search
+  end
+
+  def test_redirect_request_sends_to_404_if_incorrect_path
+    raw_request = ["GET /mama HTTP/1.1",
+                   "Host: 127.0.0.1:9292",
+                   "Connection: keep-alive",
+                   "Cache-Control: no-cache",
+                   "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36",
+                   "Postman-Token: 13cf4695-cc4b-f80e-709c-2f46dbdd8b29",
+                   "Accept: */*",
+                   "Accept-Encoding: gzip, deflate, sdch",
+                   "Accept-Language: en-US,en;q=0.8"]
+    @distributor.parse_request(raw_request)
+    assert_equal "404 Not Found", status_code
+  end
+
+  def test_redirect_request_sends_to_404_if_incorrect_path_different
+    skip
+    raw_request = ["GET /wowza HTTP/1.1",
+                   "Host: 127.0.0.1:9292",
+                   "Connection: keep-alive",
+                   "Cache-Control: no-cache",
+                   "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36",
+                   "Postman-Token: 13cf4695-cc4b-f80e-709c-2f46dbdd8b29",
+                   "Accept: */*",
+                   "Accept-Encoding: gzip, deflate, sdch",
+                   "Accept-Language: en-US,en;q=0.8"]
+    @distributor.parse_request(raw_request)
+    assert_equal "404 Not Found", status_code
+  end
+
 
 
 end
