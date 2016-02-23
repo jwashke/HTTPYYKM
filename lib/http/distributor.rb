@@ -18,4 +18,5 @@ class Distributor
               "content-type: text/html; charset=iso-8859-1",
               "content-length: #{}\r\n\r\n"].join("\r\n")
   end
+
 end
