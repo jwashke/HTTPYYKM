@@ -52,6 +52,7 @@ class DistributorTest < Minitest::Test
   end
 
   def test_parse_request_instantiates_request_parser
+    # skip
     raw_request = ["GET / HTTP/1.1",
                    "Host: 127.0.0.1:9292",
                    "Connection: keep-alive",
@@ -62,9 +63,7 @@ class DistributorTest < Minitest::Test
                    "Accept-Encoding: gzip, deflate, sdch",
                    "Accept-Language: en-US,en;q=0.8"]
     @distributor.parse_request(raw_request)
-    binding.pry
     assert @request.instance_of? HTTP::RequestParser
-
   end
 
 
