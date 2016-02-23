@@ -35,7 +35,7 @@ class Server
     puts request_lines.inspect
     #print response
     puts "Sending response."
-    binding.pry
+    #binding.pry
 
     client.puts @response.last
     client.puts @response.first
