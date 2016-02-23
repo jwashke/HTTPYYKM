@@ -7,32 +7,26 @@ module HTTP
 
     def parse_request(raw_request)
       @raw_request = raw_request
-      parse_first_line
-      parse_second_line
-      parse_accept_line
+      get_verb_path_protocol_and_args(raw_request.shift)
+      get_host_port_and_origin(raw_request.shift)
+      get_accept(raw_request[4])
     end
 
-    def parse_first_line
-      first_line = split_line(0)
-      split_path = first_line[1].split("?")
-      # param = split_path[1].split("=")
-      @request_hash[:verb]     = first_line[0]
-      @request_hash[:path]     = first_line[1]
-      @request_hash[:protocol] = first_line[2]
-      # @request_hash[:word]     = param[1]
+    def get_verb_path_protocol_and_args(line)
+      @request_hash[:verb]     = line.split[0]
+      @request_hash[:path]     = line.split[1].split("?")[0]
+      @request_hash[:word]     = line.split[1].split("?")[1].split("=")[1] if line.include?("?")
+      @request_hash[:protocol] = line.split[2]
     end
 
-    def parse_second_line
-      second_line = split_line(1)
-      second_line_two = second_line[1].split(":")
-      @request_hash[:host]   = second_line_two[0]
-      @request_hash[:port]   = second_line_two[1]
-      @request_hash[:origin] = second_line_two[0]
+    def get_host_port_and_origin(line)
+      @request_hash[:host]   = line.split(":")[1]
+      @request_hash[:port]   = line.split(":")[2]
+      @request_hash[:origin] = line.split(":")[1]
     end
 
-    def parse_accept_line
-      accept_line = split_line(6)
-      @request_hash[:Accept] = accept_line[1]
+    def get_accept(line)
+      @request_hash[:Accept] = line.split[1]
     end
 
     def split_line(index)
@@ -73,6 +67,10 @@ module HTTP
 
     def accept
       @request_hash[:accept]
+    end
+
+    def word
+      @request_hash[:word]
     end
   end
 end

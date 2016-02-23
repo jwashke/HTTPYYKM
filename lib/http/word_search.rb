@@ -3,7 +3,6 @@ module HTTP
   class WordSearch
     def initialize
       @dictionary = File.read("/usr/share/dict/words")
-      binding.pry
     end
 
     def check_word(word)
@@ -19,5 +18,3 @@ module HTTP
     end
   end
 end
-
-w = HTTP::WordSearch.new

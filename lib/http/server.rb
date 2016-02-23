@@ -17,10 +17,10 @@ module HTTP
         while line = client.gets and !line.chomp.empty?
           request << line.chomp
         end
+        puts request
         distributor.parse_request(request)
         response = distributor.output
         header = distributor.header
-        puts request
         client.puts header
         client.puts response
         break if distributor.shutdown?

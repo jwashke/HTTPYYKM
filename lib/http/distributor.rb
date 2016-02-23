@@ -1,6 +1,7 @@
 require 'html_generator'
 require 'header_generator'
 require 'request_parser'
+require 'word_search'
 require 'pry'
 
 module HTTP
@@ -73,7 +74,8 @@ module HTTP
 
     def get_path_word_search
       word = @request.word
-      @word_search.check_word(word)
+      output = @word_search.check_word(word)
+      generate_output(output)
     end
 
     def generate_output(output, status_code = "200 OK")
