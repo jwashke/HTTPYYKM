@@ -23,7 +23,6 @@ module HTTP
         header = distributor.header
         client.puts header
         client.puts response
-        binding.pry
         break if distributor.shutdown?
       end
       client.close
