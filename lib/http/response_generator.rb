@@ -5,7 +5,7 @@ require_relative 'status_codes'
 module HTTP
   class ResponseGenerator
     include StatusCodes
-    attr_accessor :guess_count
+    attr_accessor :game_counter
     attr_reader :correct_number
 
     def initialize
