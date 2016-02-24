@@ -4,7 +4,7 @@ require_relative 'status_codes'
 
 module HTTP
   class ResponseGenerator
-    include StatusCodes
+    include StatusCodes, Game
     attr_accessor :game_counter
     attr_reader :correct_number
 
@@ -48,12 +48,9 @@ module HTTP
       #rewrite player_guess if not correct. if complicted create new method
       if @game_counter.nil?
         "You need to start a new game first"
-      elsif @last_guess.nil?
-        @game_counter +=1
-        game = Game.new(player_guess, @game_counter, @last_guess = nil)
       else
         @game_counter +=1
-        game.guess_check(player_guess, correct_number)
+        guess_check(player_guess, correct_number)
       end
     end
 
