@@ -25,19 +25,18 @@ module HTTP
     def redirect_request(request_hash)
       @total_requests += 1
       @request = request_hash
-      #binding.pry
-      case @request[:path]
-      when '/'
+      binding.pry
+      if @request[:path] == '/'
         get_path_root
-      when '/hello'
+      elsif @request[:path] == '/hello'
         get_path_hello
-      when '/datetime'
+      elsif @request[:path] == '/datetime'
         get_path_datetime
-      when '/shutdown'
+      elsif @request[:path] == '/shutdown'
         get_path_shutdown
-      when '/word_search'
+      elsif @request[:path] == '/word_search'
         get_path_word_search
-      when '/game'
+      elsif @request[:path] == '/game'
         get_path_game
       else
         get_path_not_found
