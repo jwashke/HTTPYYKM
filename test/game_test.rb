@@ -17,10 +17,7 @@ class GameTest < Minitest::Test
   end
 
   def test_game_tells_correct
-    skip
-    game = Game.new
-    game.guess_check(45, 45)
-    assert_equal "You got it right! Way too go!", output
+    assert_equal "You got it right! Way too go!", @test_helper.guess_check(45, 45)
   end
 
   def test_prints_out_players_guess
