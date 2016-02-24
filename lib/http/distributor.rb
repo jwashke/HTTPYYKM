@@ -21,17 +21,10 @@ module HTTP
       @shutdown = false
     end
 
-    def parse_request(raw_request)
-      @total_requests += 1
-      @request = RequestParser.new
-      # body_length = @request.parse_request(raw)
-      @request.parse_request(raw_request)
-      puts @request.request_hash
-      redirect_request
-    end
 
-    def redirect_request
-      case @request.path
+    def redirect_request(request_hash)
+      #binding.pry
+      case request_hash[:path]
       when '/'
         get_path_root
       when '/hello'
@@ -45,7 +38,7 @@ module HTTP
       when '/game'
         get_path_game
       else
-        get_path_404_error
+        get_path_not_found
       end
     end
 
@@ -54,7 +47,7 @@ module HTTP
       generate_output(output)
     end
 
-    def get_path_404_error
+    def get_path_not_found
       status_code = "404 Not Found"
       generate_output(status_code, status_code)
     end
@@ -80,6 +73,23 @@ module HTTP
       word = @request.word
       output = @word_search.check_word(word)
       generate_output(output)
+    end
+
+    def get_path_start_game
+      @game_counter = 0
+      @last_guess = nil
+      @correct_number = rand(1..100)
+      output = "Good Luck!"
+    end
+
+    def get_path_guessing_game(player_guess)
+      #rewrite player_guess if not correct. if complicted create new method
+      if @game_counter.nil?
+        "You need to start a new game first"
+      else
+        @game_counter +=1
+        guess_check(player_guess, correct_number)
+      end
     end
 
     def generate_output(output, status_code = "200 OK")

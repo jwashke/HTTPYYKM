@@ -11,6 +11,7 @@ module HTTP
       get_verb_path_protocol_and_args(raw_request.shift)
       get_host_port_and_origin(raw_request.shift)
       get_accept(raw_request[4])
+      @request_hash
     end
 
     def get_verb_path_protocol_and_args(line)
