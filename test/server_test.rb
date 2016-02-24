@@ -1,8 +1,8 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/http/server'
-
-class ServerTest < Minitest::Test
+# require 'minitest/autorun'
+# require 'minitest/pride'
+# require_relative '../lib/http/server'
+#
+# class ServerTest < Minitest::Test
   # def test_server_instantiates
   #   skip
   #   server = Server.new
@@ -25,4 +25,4 @@ class ServerTest < Minitest::Test
   #    assert client.connection
   # end
 
-end
+# end

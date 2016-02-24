@@ -1,8 +1,8 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/http/request'
-
-class RequestTest < Minitest::Test
+# require 'minitest/autorun'
+# require 'minitest/pride'
+# require_relative '../lib/http/request'
+#
+# class RequestTest < Minitest::Test
   # def test_parsing_file_outputs_correct_diagnostics_for_verb
   #   request_array = ["<html><head></head><body><pre>\nHello, World!(0)</pre></body></html>", "http/1.1 200 ok\r\ndate: Mon, 22 Feb 2016 20:56:28 -0700\r\nserver: ruby\r\ncontent-type: text/html; charset=iso-8859-1\r\ncontent-length: \r\n\r\n"]
   #   distributor = Request.new(request_array)
@@ -83,4 +83,4 @@ class RequestTest < Minitest::Test
   #   distributor = Request.new(request_array)
   #   assert_equal "127.0.0.1", distributor.parsing_file
   # end
-end
+# end
