@@ -18,14 +18,19 @@ module HTTP
         while line = client.gets and !line.chomp.empty?
           request << line.chomp
         end
-        #request << client.read(16)
-        puts request
-        #binding.pry
-        distributor.parse_request(request)
-        response = distributor.output
-        header = distributor.header
-        client.puts header
-        client.puts response
+        #body_length = distributor.parse_request(request)
+        #unless body_length.nil?
+        #request << client.read(body_length)
+        unless request.first.include?('favicon')
+          puts request
+          #binding.pry
+          distributor.parse_request(request)
+
+          response = distributor.output
+          header = distributor.header
+          client.puts header
+          client.puts response
+        end
         break if distributor.shutdown?
       end
       client.close

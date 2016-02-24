@@ -41,6 +41,8 @@ module HTTP
         get_path_shutdown
       when '/word_search'
         get_path_word_search
+      when '/game'
+        get_path_game
       else
         get_path_404_error
       end
