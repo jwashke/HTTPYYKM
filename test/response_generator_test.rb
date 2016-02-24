@@ -33,13 +33,12 @@ class ResponseGeneratorTest < Minitest::Test
   end
 
   def test_game_count_increases_with_second_guess
-    skip
-    rg = ResponseGenerator.new
+    rg = HTTP::ResponseGenerator.new
     rg.start_game
-    assert_equal 0, game.game_counter
-    rg.guessing_game
-    assert_equal 1, game.game_counter
-    rg.guessing_game
-    assert_equal 2, game.game_counter
+    assert_equal 0, rg.game_counter
+    rg.guessing_game(47)
+    assert_equal 1, rg.game_counter
+    rg.guessing_game(19)
+    assert_equal 2, rg.game_counter
   end
 end
