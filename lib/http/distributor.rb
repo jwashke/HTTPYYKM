@@ -1,7 +1,7 @@
-require 'html_generator'
-require 'header_generator'
-require 'request_parser'
-require 'word_search'
+require_relative 'html_generator'
+require_relative 'header_generator'
+require_relative 'request_parser'
+require_relative 'word_search'
 require 'pry'
 
 module HTTP
@@ -30,15 +30,16 @@ module HTTP
     end
 
     def redirect_request
-      if @request.path == "/"
+      case @request.path
+      when '/'
         get_path_root
-      elsif @request.path == "/hello"
+      when '/hello'
         get_path_hello
-      elsif @request.path == "/datetime"
+      when '/datetime'
         get_path_datetime
-      elsif @request.path == "/shutdown"
+      when '/shutdown'
         get_path_shutdown
-      elsif @request.path == "/word_search"
+      when '/word_search'
         get_path_word_search
       else
         get_path_404_error
