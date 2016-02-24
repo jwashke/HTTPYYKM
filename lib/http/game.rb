@@ -23,8 +23,8 @@ module HTTP
     end
 
     def guess_check
-      #binding.pry
-      if @last_guess > @correct_number
+      @game_counter += 1
+       if @last_guess > @correct_number
         "Your guess is too high; try again."
       elsif @last_guess < @correct_number
         "Your guess is too low; try again."
