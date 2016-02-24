@@ -25,7 +25,7 @@ module HTTP
     def redirect_request(request_hash)
       @total_requests += 1
       @request = request_hash
-      binding.pry
+      #binding.pry
       if @request[:path] == '/'
         get_path_root
       elsif @request[:path] == '/hello'
@@ -36,6 +36,8 @@ module HTTP
         get_path_shutdown
       elsif @request[:path] == '/word_search'
         get_path_word_search
+      elsif @request[:path] == '/start_game'
+        get_path_game
       elsif @request[:path] == '/game'
         get_path_game
       else
@@ -77,21 +79,41 @@ module HTTP
     end
 
     def get_path_start_game
-      @game_counter = 0
-      @last_guess = nil
-      @correct_number = rand(1..100)
-      output = "Good Luck!"
+      @game = Game.new
+      "Good luck!"
     end
 
-    def get_path_guessing_game(player_guess)
-      #rewrite player_guess if not correct. if complicted create new method
-      if @game_counter.nil?
+    def get_path_game
+      if @game.nil?
         "You need to start a new game first"
       else
-        @game_counter +=1
-        guess_check(player_guess, correct_number)
+        response = game_turn(@request[:body].to_i, @request[:verb])
       end
-    end
+
+
+    # def get_path_start_game
+    #   @game_counter = 0
+    #   @last_guess = nil
+    #   @correct_number = rand(1..100)
+    #   output = "Good Luck!"
+    # end
+    #
+    # def get_path_game
+    #   if @request[:verb] == 'POST'
+    #     get_path_guessing_game
+    #   else
+    #     output_game_info
+    #   end
+    # end
+    #
+    # def get_path_guessing_game
+    #   if @game_counter.nil?
+    #     "You need to start a new game first"
+    #   else
+    #     @game_counter +=1
+    #     guess_check(@request[:body].to_i, @correct_number)
+    #   end
+    # end
 
     def generate_output(output, status_code = "200 OK")
       @output = generate_html(output)
