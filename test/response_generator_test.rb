@@ -15,16 +15,17 @@ class ResponseGeneratorTest < Minitest::Test
   end
 
   def test_game_generates_random_number
-    skip
     rg = HTTP::ResponseGenerator.new
+    rg.start_game
     correct_num_one  = rg.correct_number
-    rg = HTTP::ResponseGenerator.new
-    correct_num_two  = rg.correct_number
+    rg2 = HTTP::ResponseGenerator.new
+    rg2.start_game
+    correct_num_two  = rg2.correct_number
     refute correct_num_one == correct_num_two
   end
 
   def test_game_count_increases_with_first_guess
-    skip
+skip
     rg = HTTP::ResponseGenerator.new
     rg.start_game
     assert_equal 0, rg.game_counter
