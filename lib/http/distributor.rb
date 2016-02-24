@@ -24,6 +24,7 @@ module HTTP
     def parse_request(raw_request)
       @total_requests += 1
       @request = RequestParser.new
+      # body_length = @request.parse_request(raw)
       @request.parse_request(raw_request)
       puts @request.request_hash
       redirect_request

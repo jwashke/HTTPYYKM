@@ -20,16 +20,5 @@ class GameTest < Minitest::Test
     assert_equal "You got it right! Way too go!", @test_helper.guess_check(45, 45)
   end
 
-  def test_prints_out_players_guess
-  end
-
-  def test_game_knows_if_its_in_progress
-  end
-
-  def test_if_you_start_game_in_progress_will_give_403_error
-  end
-
-
-
 
 end
