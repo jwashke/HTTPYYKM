@@ -10,7 +10,7 @@ module HTTP
       @distributor = Distributor.new
     end
 
-  
+
     def server_start #we read request from client
       tcp_server = TCPServer.new(9292)
       client = tcp_server.accept
@@ -27,9 +27,7 @@ module HTTP
         #request << client.read(body_length)
         unless request.first.include?('favicon')
           puts request
-          #binding.pry
           distributor.parse_request(request)
-
           response = distributor.output
           header = distributor.header
           client.puts header

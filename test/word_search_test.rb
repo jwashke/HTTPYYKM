@@ -15,4 +15,6 @@ class WordSearchTest < Minitest::Test
   def test_it_can_check_dictionary_doesnt_include_a_word
     assert_equal "pizzaaaaa is not a known word", @word_search.check_word("pizzaaaaa")
   end
+
+  #double words, empty, nil, 
 end

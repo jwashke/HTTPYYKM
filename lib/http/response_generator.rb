@@ -1,9 +1,12 @@
 require_relative 'word_search'
 require_relative 'game'
+require_relative 'status_codes'
 
 module HTTP
   class ResponseGenerator
-    include StatusCodes
+    include StatusCodes, Game
+    attr_accessor :game_counter
+    attr_reader :correct_number
 
     def initialize
       @hello_count    = 0
@@ -34,8 +37,22 @@ module HTTP
 
     end
 
-    def game
-
+    def start_game
+      @game_counter = 0
+      @last_guess = nil
+      @correct_number = rand(1..100)
+      output = "Good Luck!"
     end
+
+    def guessing_game(player_guess)
+      #rewrite player_guess if not correct. if complicted create new method
+      if @game_counter.nil?
+        "You need to start a new game first"
+      else
+        @game_counter +=1
+        guess_check(player_guess, correct_number)
+      end
+    end
+
   end
 end
