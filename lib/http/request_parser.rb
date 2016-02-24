@@ -1,3 +1,4 @@
+require 'pry'
 module HTTP
   class RequestParser
     def initialize
@@ -14,6 +15,7 @@ module HTTP
 
     def get_verb_path_protocol_and_args(line)
       @request_hash[:verb]     = line.split[0]
+      #binding.pry
       @request_hash[:path]     = line.split[1].split("?")[0]
       @request_hash[:word]     = line.split[1].split("?")[1].split("=")[1] if line.include?("?")
       @request_hash[:protocol] = line.split[2]

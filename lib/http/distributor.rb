@@ -102,5 +102,4 @@ module HTTP
       @shutdown
     end
   end
-
 end
