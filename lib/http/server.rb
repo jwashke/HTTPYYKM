@@ -14,10 +14,13 @@ module HTTP
       distributor = Distributor.new
       loop do
         request = []
+        #content_length.times do {client.readbyte}
         while line = client.gets and !line.chomp.empty?
           request << line.chomp
         end
+        #request << client.read(16)
         puts request
+        #binding.pry
         distributor.parse_request(request)
         response = distributor.output
         header = distributor.header
