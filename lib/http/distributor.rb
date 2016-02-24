@@ -86,9 +86,9 @@ module HTTP
 
     def get_path_game
       if @game.nil?
-        "You need to start a new game first"
+        generate_output("You need to start a new game first")
       else
-        response = game_turn(@request[:body].to_i, @request[:verb])
+        response = @game.game_turn(@request[:body].to_i, @request[:verb])
         generate_output(response)
       end
     end
