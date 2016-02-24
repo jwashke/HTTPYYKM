@@ -13,10 +13,7 @@ class GameTest < Minitest::Test
   end
 
   def test_game_tells_too_low
-    skip
-    game = Game.new
-    game.guess_check(32, 45)
-    assert_equal "Your guess is too low; try again.", output
+    assert_equal "Your guess is too low; try again.", @test_helper.guess_check(32, 45)
   end
 
   def test_game_tells_correct
