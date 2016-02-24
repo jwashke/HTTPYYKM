@@ -23,8 +23,10 @@ module HTTP
 
 
     def redirect_request(request_hash)
+      @total_requests += 1
+      @request = request_hash
       #binding.pry
-      case request_hash[:path]
+      case @request[:path]
       when '/'
         get_path_root
       when '/hello'
@@ -70,7 +72,7 @@ module HTTP
     end
 
     def get_path_word_search
-      word = @request.word
+      word = @request[:word]
       output = @word_search.check_word(word)
       generate_output(output)
     end
@@ -103,13 +105,13 @@ module HTTP
     end
 
     def request_diagnostic
-      "Verb: #{@request.verb}\n" +
-      "Path: #{@request.path}\n" +
-      "Protocol: #{@request.protocol}\n" +
-      "Host: #{@request.host}\n" +
-      "Port: #{@request.port}\n" +
-      "Origin: #{@request.origin}\n" +
-      "Accept: #{@request.accept}\n"
+      "Verb: #{@request[:verb]}\n" +
+      "Path: #{@request[:path]}\n" +
+      "Protocol: #{@request[:protocol]}\n" +
+      "Host: #{@request[:host]}\n" +
+      "Port: #{@request[:port]}\n" +
+      "Origin: #{@request[:origin]}\n" +
+      "Accept: #{@request[:accept]}\n"
     end
 
     def shutdown?
