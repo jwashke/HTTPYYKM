@@ -7,16 +7,13 @@
 
 class Game
   attr_accessor :guess_count
+  attr_reader :correct_number
 
   def initialize
     @guess_count = 0
     @correct_number = rand(1..100)
   end
 
-  def random_num_generator
-
-
-  end
 
 
 

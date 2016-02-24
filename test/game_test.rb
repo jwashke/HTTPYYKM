@@ -21,7 +21,6 @@ class GameTest < Minitest::Test
   end
 
   def test_game_generates_random_number
-    skip
     game = Game.new
     correct_num_one  = game.correct_number
     game = Game.new
