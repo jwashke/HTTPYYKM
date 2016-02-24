@@ -6,13 +6,13 @@ module HTTP
       @correct_number = rand(1..100)
     end
 
-    def get_path_game
-      if @request[:verb] == 'POST'
-        get_path_guessing_game
-      else
-        output_game_info
-      end
-    end
+    # def get_path_game
+    #   if @request[:verb] == 'POST'
+    #     get_path_guessing_game
+    #   else
+    #     output_game_info
+    #   end
+    # end
 
     def game_turn(player_guess, verb)
       if verb == 'GET'
@@ -27,16 +27,15 @@ module HTTP
 
 
 
-    end
 
-    def get_path_guessing_game
-      if @game_counter.nil?
-        "You need to start a new game first"
-      else
-        @game_counter +=1
-        guess_check(@request[:body].to_i, @correct_number)
-      end
-    end
+    # def get_path_guessing_game
+    #   if @game_counter.nil?
+    #     "You need to start a new game first"
+    #   else
+    #     @game_counter +=1
+    #     guess_check(@request[:body].to_i, @correct_number)
+    #   end
+    # end
 
     def guess_check(player_guess)
       if player_guess > @correct_number

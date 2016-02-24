@@ -2,6 +2,7 @@ require_relative 'html_generator'
 require_relative 'header_generator'
 require_relative 'request_parser'
 require_relative 'word_search'
+require_relative 'game'
 require 'pry'
 
 module HTTP
@@ -37,7 +38,7 @@ module HTTP
       elsif @request[:path] == '/word_search'
         get_path_word_search
       elsif @request[:path] == '/start_game'
-        get_path_game
+        get_path_start_game
       elsif @request[:path] == '/game'
         get_path_game
       else
@@ -80,7 +81,7 @@ module HTTP
 
     def get_path_start_game
       @game = Game.new
-      "Good luck!"
+      generate_output("Good luck!")
     end
 
     def get_path_game
@@ -88,7 +89,9 @@ module HTTP
         "You need to start a new game first"
       else
         response = game_turn(@request[:body].to_i, @request[:verb])
+        generate_output(response)
       end
+    end
 
 
     # def get_path_start_game
