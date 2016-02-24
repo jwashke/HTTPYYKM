@@ -1,13 +1,11 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative '../lib/http/game'
+require_relative '../lib/http/response_generator'
 
-class GameTest < Minitest::Test
+class ResponseGeneratorTest < Minitest::Test
   def test_game_starts_with_good_luck_message
-    skip
-    #can move to response_generator_test just keeping it here for now
-    rg = ResponseGenerator.new
-    assert_equal "Good Luck!", rg.game_start.output
+    rg = HTTP::ResponseGenerator.new
+    assert_equal "Good Luck!", rg.start_game
   end
 
   def test_reponse_generator_guess_count_as_zero
@@ -17,6 +15,7 @@ class GameTest < Minitest::Test
   end
 
   def test_game_generates_random_number
+    skip
     rg = ResponseGenerator.new
     correct_num_one  = rg.correct_number
     rg = ResponseGenerator.new
@@ -43,3 +42,4 @@ class GameTest < Minitest::Test
     rg.guessing_game
     assert_equal 2, game.guess_count
   end
+end
