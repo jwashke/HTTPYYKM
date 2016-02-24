@@ -23,7 +23,7 @@ class RequestTest < Minitest::Test
     #change the request array
     assert_equal "Path: /", distributor.parsing_file(request_array)[1]
   end
-
+  
   def test_parsing_file_outputs_correct_diagnostics_for_path_for_datetime
     skip
     request_array = ["<html><head></head><body><pre>\nHello, World!(0)</pre></body></html>", "http/1.1 200 ok\r\ndate: Mon, 22 Feb 2016 20:56:28 -0700\r\nserver: ruby\r\ncontent-type: text/html; charset=iso-8859-1\r\ncontent-length: \r\n\r\n"]
@@ -82,7 +82,5 @@ class RequestTest < Minitest::Test
                   </pre>"
     distributor = Request.new(request_array)
     assert_equal "127.0.0.1", distributor.parsing_file
-
-
   end
 end
