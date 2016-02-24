@@ -1,14 +1,12 @@
-require_relative 'html_generator'
-require_relative 'header_generator'
 require_relative 'word_search'
 require_relative 'game'
 
 module HTTP
-  class Application
+  class ResponseGenerator
     include StatusCodes
 
     def initialize
-      @hello_count = 0
+      @hello_count    = 0
       @total_requests = 0
     end
 

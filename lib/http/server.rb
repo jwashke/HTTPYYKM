@@ -6,7 +6,11 @@ require 'socket'
 require 'distributor'
 module HTTP
   class Server
+    def initialize
+      @distributor = Distributor.new
+    end
 
+  
     def server_start #we read request from client
       tcp_server = TCPServer.new(9292)
       client = tcp_server.accept
