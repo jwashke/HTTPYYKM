@@ -1,18 +1,15 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/http/game'
+require_relative 'test_helper'
 
 class GameTest < Minitest::Test
-  def test_game_instantiates
-    game = Game.new
-    game.instance_of? Game
+  def setup
+    @test_helper = TestHelper.new
   end
 
   def test_game_tells_too_high
-    skip
-    game = Game.new
-    game.guess_check(62, 45)
-    assert_equal "Your guess is too high; try again.", output
+    assert_equal "Your guess is too high; try again.", @test_helper.guess_check(62, 45)
   end
 
   def test_game_tells_too_low
