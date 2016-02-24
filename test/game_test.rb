@@ -15,34 +15,37 @@ class GameTest < Minitest::Test
     game.instance_of? Game
   end
 
-  def test_game_instantiates_guess_count_as_zero
-    game = Game.new
-    assert_equal 0, game.guess_count
+  def test_reponse_generator_guess_count_as_zero
+    skip
+    rg = ResponseGenerator.new
+    assert_equal 0, response_generator.guess_count
   end
 
   def test_game_generates_random_number
-    game = Game.new
-    correct_num_one  = game.correct_number
-    game = Game.new
-    correct_num_two  = game.correct_number
+    rg = ResponseGenerator.new
+    correct_num_one  = rg.correct_number
+    rg = ResponseGenerator.new
+    correct_num_two  = rg.correct_number
     refute correct_num_one == correct_num_two
   end
 
   def test_game_count_increases_with_first_guess
     skip
-    game = Game.new
-    assert_equal 0, game.guess_count
-    #do something
-    assert_equal 1, game.guess_count
+    rg = ResponseGenerator.new
+    rg.start_game
+    assert_equal 0, rg.guess_count
+    rg.guessing_game
+    assert_equal 1, rg.guess_count
   end
 
   def test_game_count_increases_with_second_guess
     skip
-    game = Game.new
+    rg = ResponseGenerator.new
+    rg.start_game
     assert_equal 0, game.guess_count
-    #do something
+    rg.guessing_game
     assert_equal 1, game.guess_count
-    #do something
+    rg.guessing_game
     assert_equal 2, game.guess_count
   end
 
