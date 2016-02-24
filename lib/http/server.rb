@@ -27,6 +27,7 @@ module HTTP
       end
       client.close
     end
+
   end
 end
 s = HTTP::Server.new

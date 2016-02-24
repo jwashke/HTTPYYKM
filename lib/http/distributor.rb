@@ -9,7 +9,7 @@ module HTTP
     include HTMLGenerator
     include HeaderGenerator
 
-    attr_reader :header, :output
+    attr_reader :header, :output, :total_requests, :request
 
     def initialize
       @word_search = WordSearch.new
