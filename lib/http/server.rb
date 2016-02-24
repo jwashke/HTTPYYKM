@@ -1,6 +1,9 @@
+lib_folder = File.expand_path(__dir__)
+$LOAD_PATH << lib_folder
+
 require 'pry'
 require 'socket'
-require_relative 'distributor'
+require 'distributor'
 module HTTP
   class Server
 
@@ -14,7 +17,7 @@ module HTTP
         while line = client.gets and !line.chomp.empty?
           request << line.chomp
         end
-        binding.pry
+        puts request
         distributor.parse_request(request)
         response = distributor.output
         header = distributor.header
@@ -25,9 +28,7 @@ module HTTP
       client.close
     end
 
-
-
-end
+  end
 end
 s = HTTP::Server.new
 s.server_start

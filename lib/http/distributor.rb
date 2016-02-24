@@ -1,6 +1,7 @@
-require_relative 'html_generator'
-require_relative 'header_generator'
-require_relative 'request_parser'
+require 'html_generator'
+require 'header_generator'
+require 'request_parser'
+require 'word_search'
 require 'pry'
 
 module HTTP
@@ -11,6 +12,7 @@ module HTTP
     attr_reader :header, :output, :total_requests, :request
 
     def initialize
+      @word_search = WordSearch.new
       @request
       @header
       @total_requests = 0
@@ -70,6 +72,12 @@ module HTTP
       generate_output(output)
     end
 
+    def get_path_word_search
+      word = @request.word
+      output = @word_search.check_word(word)
+      generate_output(output)
+    end
+
     def generate_output(output, status_code = "200 OK")
       @output = generate_html(output)
       @header = get_header(@output, status_code)
@@ -94,5 +102,4 @@ module HTTP
       @shutdown
     end
   end
-
 end
