@@ -1,12 +1,35 @@
+require 'pry'
 module HTTP
-  module Game
-    def guess_check(player_guess, correct_number)
-      if player_guess > correct_number
-        output = "Your guess is too high; try again."
-      elsif player_guess < correct_number
-        output = "Your guess is too low; try again."
+  class Game
+    def initialize
+      @game_counter = 0
+      @last_guess = nil
+      @correct_number = rand(1..100)
+      #binding.pry
+    end
+
+    def game_turn(player_guess, verb)
+      if verb == 'GET'
+        if !@last_guess.nil?
+          "Your guess was #{@last_guess}. #{guess_check} Total guesses: #{@game_counter}"
+        else
+          "Please make a guess between 1 and 100"
+        end
       else
-        output = "You got it right! Way too go!"
+        @last_guess = player_guess
+        # generate_output("You are being redirected.")
+        # game_turn(player_guess, 'GET')
+      end
+    end
+
+    def guess_check
+      @game_counter += 1
+       if @last_guess > @correct_number
+        "Your guess is too high; try again."
+      elsif @last_guess < @correct_number
+        "Your guess is too low; try again."
+      else
+        "You got it right! Way to go!"
       end
 
     end

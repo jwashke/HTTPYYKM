@@ -2,6 +2,7 @@ require_relative 'html_generator'
 require_relative 'header_generator'
 require_relative 'request_parser'
 require_relative 'word_search'
+require_relative 'game'
 require 'pry'
 
 module HTTP
@@ -21,31 +22,27 @@ module HTTP
       @shutdown = false
     end
 
-    def parse_request(raw_request)
-      @total_requests += 1
-      @request = RequestParser.new
-      # body_length = @request.parse_request(raw)
-      @request.parse_request(raw_request)
-      puts @request.request_hash
-      redirect_request
-    end
 
-    def redirect_request
-      case @request.path
-      when '/'
+    def redirect_request(request_hash)
+      @total_requests += 1
+      @request = request_hash
+      #binding.pry
+      if @request[:path] == '/'
         get_path_root
-      when '/hello'
+      elsif @request[:path] == '/hello'
         get_path_hello
-      when '/datetime'
+      elsif @request[:path] == '/datetime'
         get_path_datetime
-      when '/shutdown'
+      elsif @request[:path] == '/shutdown'
         get_path_shutdown
-      when '/word_search'
+      elsif @request[:path] == '/word_search'
         get_path_word_search
-      when '/game'
+      elsif @request[:path] == '/start_game'
+        get_path_start_game
+      elsif @request[:path] == '/game'
         get_path_game
       else
-        get_path_404_error
+        get_path_not_found
       end
     end
 
@@ -54,7 +51,7 @@ module HTTP
       generate_output(output)
     end
 
-    def get_path_404_error
+    def get_path_not_found
       status_code = "404 Not Found"
       generate_output(status_code, status_code)
     end
@@ -77,10 +74,49 @@ module HTTP
     end
 
     def get_path_word_search
-      word = @request.word
+      word = @request[:word]
       output = @word_search.check_word(word)
       generate_output(output)
     end
+
+    def get_path_start_game
+      @game = Game.new
+      generate_output("Good luck!")
+    end
+
+    def get_path_game
+      if @game.nil?
+        generate_output("You need to start a new game first")
+      else
+        response = @game.game_turn(@request[:body].to_i, @request[:verb])
+        generate_output(response)
+      end
+    end
+
+
+    # def get_path_start_game
+    #   @game_counter = 0
+    #   @last_guess = nil
+    #   @correct_number = rand(1..100)
+    #   output = "Good Luck!"
+    # end
+    #
+    # def get_path_game
+    #   if @request[:verb] == 'POST'
+    #     get_path_guessing_game
+    #   else
+    #     output_game_info
+    #   end
+    # end
+    #
+    # def get_path_guessing_game
+    #   if @game_counter.nil?
+    #     "You need to start a new game first"
+    #   else
+    #     @game_counter +=1
+    #     guess_check(@request[:body].to_i, @correct_number)
+    #   end
+    # end
 
     def generate_output(output, status_code = "200 OK")
       @output = generate_html(output)
@@ -93,13 +129,13 @@ module HTTP
     end
 
     def request_diagnostic
-      "Verb: #{@request.verb}\n" +
-      "Path: #{@request.path}\n" +
-      "Protocol: #{@request.protocol}\n" +
-      "Host: #{@request.host}\n" +
-      "Port: #{@request.port}\n" +
-      "Origin: #{@request.origin}\n" +
-      "Accept: #{@request.accept}\n"
+      "Verb: #{@request[:verb]}\n" +
+      "Path: #{@request[:path]}\n" +
+      "Protocol: #{@request[:protocol]}\n" +
+      "Host: #{@request[:host]}\n" +
+      "Port: #{@request[:port]}\n" +
+      "Origin: #{@request[:origin]}\n" +
+      "Accept: #{@request[:accept]}\n"
     end
 
     def shutdown?

@@ -16,5 +16,9 @@ class WordSearchTest < Minitest::Test
     assert_equal "pizzaaaaa is not a known word", @word_search.check_word("pizzaaaaa")
   end
 
-  #double words, empty, nil, 
+  def test_it_can_check_dictionary_if_word_empty
+    assert_equal " is a known word", @word_search.check_word("")
+  end
+
+  #double words, empty, nil,
 end
