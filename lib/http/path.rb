@@ -6,6 +6,7 @@ module HTTP
   class Path
     include OutputGenerator
       attr_reader :status_code
+      attr_accessor :count
     def initialize
       @word_search = WordSearch.new
       @count = 0

@@ -1,33 +1,48 @@
+require 'minitest/autorun'
+require 'minitest/pride'
+require_relative '../lib/http/path'
+require_relative 'test_helper'
 
+class PathTest < Minitest::Test
+  def setup
+    @path = HTTP::Path.new
+  end
 
-class ResponseGeneratorTest < Minitest::Test
+  def test_path_initalizes_count_as_zero
+    assert_equal 0, @path.count
+  end
+
+  def test_path_initializes_with_ws_instance
+
+end
+
   def test_game_starts_with_good_luck_message
-    rg = HTTP::ResponseGenerator.new
-    assert_equal "Good Luck!", rg.start_game
+    skip
+    assert_equal "Good Luck!", @path.start_game
   end
 
-  def distributor_initalizes_count_as_zero
-    assert_equal 0, @distributor.count
-  end
-  
+
   def test_reponse_generator_starts_game_with_game_counter_as_zero
-    response_generator = HTTP::ResponseGenerator.new
+    skip
+    response_generator = HTTP::Path.new
     response_generator.start_game
     assert_equal 0, response_generator.game_counter
   end
 
   def test_game_generates_random_number
-    rg = HTTP::ResponseGenerator.new
+    skip
+    rg = HTTP::Path.new
     rg.start_game
     correct_num_one  = rg.correct_number
-    rg2 = HTTP::ResponseGenerator.new
+    rg2 = HTTP::Path.new
     rg2.start_game
     correct_num_two  = rg2.correct_number
     refute correct_num_one == correct_num_two
   end
 
   def test_game_count_increases_with_first_guess
-    rg = HTTP::ResponseGenerator.new
+    skip
+    rg = HTTP::Path.new
     rg.start_game
     assert_equal 0, rg.game_counter
     rg.guessing_game(47)
@@ -35,7 +50,8 @@ class ResponseGeneratorTest < Minitest::Test
   end
 
   def test_game_count_increases_with_second_guess
-    rg = HTTP::ResponseGenerator.new
+    skip
+    rg = HTTP::Path.new
     rg.start_game
     assert_equal 0, rg.game_counter
     rg.guessing_game(47)
