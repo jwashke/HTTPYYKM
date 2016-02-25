@@ -46,19 +46,10 @@ class DistributorTest < Minitest::Test
     assert @distributor.path_checker(request_hash) == @distributor.path.get_path_root(request_hash)
   end
 
-  def test_path_checker_sends_to_root_and_200_status
-    skip
-    request_hash = {:verb=>"GET", :path=>"/", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
-    @distributor.path_checker(request_hash)
-    time = Time.new.strftime("%a, %e %b %Y %H:%M:%S %z")
-    assert_equal "200", @distributor.path_checker.split[1]
-  end
-
   def test_path_checker_sends_to_hello
     skip
     request_hash = {:verb=>"GET", :path=>"/hello", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
-    @distributor.path_checker(request_hash)
-    assert_equal " ", output
+    assert @distributor.path_checker(request_hash) == @distributor.path.get_path_hello(request_hash)
   end
 
   def test_path_checker_will_not_send_to_datetime_if_different_path_set
