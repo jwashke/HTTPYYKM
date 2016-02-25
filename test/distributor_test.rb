@@ -89,10 +89,23 @@ class DistributorTest < Minitest::Test
     assert_equal "404 Not Found", @distributor.path_checker(request_hash)
   end
 
-  def test_shutdown_returns_correct_total_requests
+  def test_shutdown_returns_correct_total_requests_for_one
     request_hash = {:verb=>"GET", :path=>"/shutdown", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
     @distributor.redirect_request(request_hash)
     assert_equal "Total Requests: 1", @distributor.path_checker(request_hash)
+  end
+
+  def test_shutdown_returns_correct_total_requests_for_multiplees
+    request_hash = {:verb=>"GET", :path=>"/shutdown", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
+    @distributor.redirect_request(request_hash)
+    @distributor.redirect_request(request_hash)
+    @distributor.redirect_request(request_hash)
+    @distributor.redirect_request(request_hash)
+    assert_equal "Total Requests: 4", @distributor.path_checker(request_hash)
+  end
+
+  def test_generate_output_calls_on_correct_methods
+    output = "Total Requests: 1"
   end
 
 end
