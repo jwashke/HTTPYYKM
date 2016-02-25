@@ -12,7 +12,7 @@ module HTTP
     end
 
 
-    def server_start #we read request from client
+    def server_start
       tcp_server = TCPServer.new(9292)
       client = tcp_server.accept
       distributor = Distributor.new
@@ -20,13 +20,9 @@ module HTTP
       loop do
         request_parser = RequestParser.new
         request = []
-        #content_length.times do {client.readbyte}
         while line = client.gets and !line.chomp.empty?
           request << line.chomp
         end
-        #body_length = distributor.parse_request(request)
-        #unless body_length.nil?
-        #request << client.read(body_length)
         unless request.first.include?('favicon')
           puts request
           request_hash = request_parser.parse_request(request)
@@ -34,14 +30,13 @@ module HTTP
             body_length = request[1].split[1]
             request_hash[:body] = client.read(body_length.to_i)
           end
-          #binding.pry
           distributor.redirect_request(request_hash)
           response = distributor.output
           header = distributor.header
           client.puts header
           client.puts response
         end
-        break if distributor.shutdown?
+        break if request_hash[:path] == '/shutdown'
       end
       client.close
     end
