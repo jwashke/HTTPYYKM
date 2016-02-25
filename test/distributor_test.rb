@@ -25,12 +25,10 @@ class DistributorTest < Minitest::Test
   end
 
   def test_response_says_hello_world_with_different_number
-    skip
     request_hash = {:verb=>"GET", :path=>"/hello", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
     @distributor.path_checker(request_hash)
     @distributor.path_checker(request_hash)
-    @distributor.path_checker(request_hash)
-    assert_equal "<html><head></head><body><pre>Hello World! (3)</pre></body></html>", @distributor.output
+    assert_equal "Hello World! (3)", @distributor.path_checker(request_hash)
   end
 
   def test_when_parse_request_called_total_requests_increases
