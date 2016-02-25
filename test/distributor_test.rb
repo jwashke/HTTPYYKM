@@ -58,10 +58,9 @@ class DistributorTest < Minitest::Test
   end
 
   def test_path_checker_sends_to_datetime
-    skip
     request_hash = {:verb=>"GET", :path=>"/datetime", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
-    @distributor.path_checker(request_hash)
-    assert_equal " ", output
+    time = Time.new.strftime("%a, %e %b %Y %H:%M:%S %z")
+    assert_equal time, @distributor.path_checker(request_hash)
   end
 
   def test_path_checker_sends_to_shutdown
