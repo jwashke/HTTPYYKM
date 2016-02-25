@@ -104,8 +104,10 @@ class DistributorTest < Minitest::Test
     assert_equal "Total Requests: 4", @distributor.path_checker(request_hash)
   end
 
-  def test_generate_output_calls_on_correct_methods
+  def test_generate_output_Output_returns_with_html_wrap
     output = "Total Requests: 1"
+    @distributor.generate_output(output)
+    assert_equal "<html><head></head><body><pre>Total Requests: 1</pre></body></html>", @distributor.output
   end
 
 end

@@ -13,7 +13,7 @@ module HTTP
     include HeaderGenerator
     include OutputGenerator
 
-    attr_reader :header, :total_requests, :request, :path
+    attr_reader :header, :total_requests, :request, :output, :path
 
     def initialize
       @path = Path.new
