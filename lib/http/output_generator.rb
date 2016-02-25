@@ -10,10 +10,5 @@ module HTTP
       "Origin: #{request[:origin]}\n" +
       "Accept: #{request[:accept]}\n"
     end
-
-    def get_header(output, status_code)
-      output_length = output.length
-      generate_header(output_length, status_code)
-    end
   end
 end

@@ -35,8 +35,9 @@ module HTTP
           header = distributor.header
           client.puts header
           client.puts response
+          break if request_hash[:path] == '/shutdown'
         end
-        break if request_hash[:path] == '/shutdown'
+
       end
       client.close
     end
