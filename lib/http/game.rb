@@ -28,8 +28,9 @@ module HTTP
       elsif @last_guess < @correct_number
         "Your guess is too low; try again."
       else
-        "You got it right! Way to go! The number has been changed, try again!"
         @correct_number = generate_random_number
+        "You got it right! Way to go! The number has been changed, try again!"
+
       end
     end
 
