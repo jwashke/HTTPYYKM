@@ -7,16 +7,15 @@ module HTTP
     end
 
     def parse_request(raw_request)
-      puts "nil" if raw_request.nil?
-      puts raw_request
       @raw_request = raw_request
-      get_verb_path_protocol_and_args(raw_request[0])
-      get_host_port_and_origin(raw_request[1])
-      get_accept(raw_request[6])
+      get_verb_path_protocol_and_args(raw_request.shift)
+      get_host_port_and_origin(raw_request.shift)
+      get_accept(raw_request[4])
       @request_hash
     end
 
     def get_verb_path_protocol_and_args(line)
+      puts line
       @request_hash[:verb]     = line.split[0]
       @request_hash[:path]     = line.split[1].split("?")[0]
       @request_hash[:word]     = line.split[1].split("?")[1].split("=")[1] if line.include?("?")

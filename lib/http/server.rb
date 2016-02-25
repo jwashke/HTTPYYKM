@@ -22,10 +22,8 @@ module HTTP
         while line = client.gets and !line.chomp.empty?
           request << line.chomp
         end
-        puts "nil" if request.nil?
-        puts request
         next if request.nil?
-        #unless request.first.include?('favicon')
+        unless request.first.include?('favicon')
           request_hash = RequestParser.new.parse_request(request)
           if request.join.include?('Content-Length:')
             body_length = request[1].split[1]
@@ -37,7 +35,7 @@ module HTTP
           client.puts header
           client.puts response
           break if request_hash[:path] == '/shutdown'
-        #end
+        end
       end
       client.close
     end
