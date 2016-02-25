@@ -1,11 +1,11 @@
 require 'pry'
 module HTTP
   class Game
+    attr_reader :correct_number
     def initialize
       @game_counter = 0
       @last_guess = nil
       @correct_number = rand(1..100)
-      #binding.pry
     end
 
     def game_turn(player_guess, verb)
@@ -17,8 +17,6 @@ module HTTP
         end
       else
         @last_guess = player_guess
-        # generate_output("You are being redirected.")
-        # game_turn(player_guess, 'GET')
       end
     end
 
@@ -31,7 +29,6 @@ module HTTP
       else
         "You got it right! Way to go!"
       end
-
     end
 
   end

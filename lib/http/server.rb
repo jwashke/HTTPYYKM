@@ -26,9 +26,6 @@ module HTTP
         unless request.first.include?('favicon')
           puts request
           request_hash = request_parser.parse_request(request)
-          if request[1].include?('Content-Length:')
-            body_length = request[1].split[1]
-            request_hash[:body] = client.read(body_length.to_i)
           end
           distributor.redirect_request(request_hash)
           response = distributor.output
