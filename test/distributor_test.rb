@@ -14,6 +14,10 @@ class DistributorTest < Minitest::Test
     @distributor.instance_of? HTTP::Distributor
   end
 
+  def test_distributor_instantiates_path
+    assert @distributor.path.instance_of? HTTP::Path
+  end
+
   def distributor_initalizes_total_requests_as_zero
     assert_equal 0, @distributor.total_requests
   end
@@ -37,12 +41,6 @@ class DistributorTest < Minitest::Test
     assert_equal 1, @distributor.total_requests
   end
 
-  def test_parse_request_instantiates_path
-    skip
-    request_hash = {:verb=>"GET", :path=>"/hello", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
-    @distributor.path_checker(request_hash)
-    assert @request.instance_of? HTTP::Path
-  end
 
   def test_path_checker_sends_to_get_path_root
     skip
