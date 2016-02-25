@@ -31,10 +31,9 @@ class DistributorTest < Minitest::Test
     assert_equal "Hello World! (3)", @distributor.path_checker(request_hash)
   end
 
-  def test_when_parse_request_called_total_requests_increases
-    skip
+  def test_when_redirect_request_called_total_requests_increases
     request_hash = {:verb=>"GET", :path=>"/hello", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
-    @distributor.path_checker(request_hash)
+    @distributor.redirect_request(request_hash)
     assert_equal 1, @distributor.total_requests
   end
 
