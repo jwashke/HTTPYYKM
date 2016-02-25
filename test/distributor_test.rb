@@ -69,6 +69,11 @@ class DistributorTest < Minitest::Test
     assert_equal "Total Requests: 0", @distributor.path_checker(request_hash)
   end
 
+  def test_path_checker_sends_to_start_game
+    request_hash = {:verb=>"GET", :path=>"/start_game", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
+    assert_equal "Good luck!", @distributor.path_checker(request_hash)
+  end
+
   def test_path_checker_sends_to_word_search
     request_hash = {:verb=>"GET", :path=>"/word_search", :word=>"coffee", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
     assert_equal "coffee is a known word",   @distributor.path_checker(request_hash)
