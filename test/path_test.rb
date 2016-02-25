@@ -16,6 +16,11 @@ class PathTest < Minitest::Test
     assert @path.word_search.instance_of? HTTP::WordSearch
   end
 
+  def test_get_path_root_returns_diagnostic_info
+    request_hash = {:verb=>"GET", :path=>"/", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
+    assert_equal ["Verb:", "GET", "Path:", "/", "Protocol:", "HTTP/1.1", "Host:", "127.0.0.1", "Port:", "9292", "Origin:", "127.0.0.1", "Accept:"], @path.get_path_root(request_hash).split
+  end
+
   def test_game_starts_with_good_luck_message
     skip
     assert_equal "Good Luck!", @path.start_game

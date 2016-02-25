@@ -10,7 +10,6 @@ module HTTP
     def initialize
       @word_search = WordSearch.new
       @count = 0
-      @status_code
     end
 
     def get_path_root(request)
@@ -19,7 +18,6 @@ module HTTP
 
     def get_path_not_found
       @status_code = "404 Not Found"
-      "404 Not Found"
     end
 
     def get_path_datetime
