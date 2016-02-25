@@ -5,7 +5,7 @@ require_relative 'output_generator'
 module HTTP
   class Path
     include OutputGenerator
-      attr_reader :status_code 
+      attr_reader :status_code
     def initialize
       @word_search = WordSearch.new
       @count = 0
@@ -54,7 +54,6 @@ module HTTP
     def get_path_game(request)
       if @game.nil?
         @status_code = "301 Redirect"
-        #not actually redirecting
         "You need to start a new game first"
       else
         @game.game_turn(request[:body].to_i, request[:verb])
