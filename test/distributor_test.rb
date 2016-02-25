@@ -48,6 +48,7 @@ class DistributorTest < Minitest::Test
 
   def test_path_checker_sends_to_hello
     skip
+    #bad test maybe
     request_hash = {:verb=>"GET", :path=>"/hello", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
     assert @distributor.path_checker(request_hash) == @distributor.path.get_path_hello
   end
@@ -64,10 +65,8 @@ class DistributorTest < Minitest::Test
   end
 
   def test_path_checker_sends_to_shutdown
-    skip
     request_hash = {:verb=>"GET", :path=>"/shutdown", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
-    @distributor.path_checker(request_hash)
-    assert_equal " ", output
+    assert_equal "Total Requests: 0", @distributor.path_checker(request_hash)
   end
 
   def test_path_checker_sends_to_word_search
