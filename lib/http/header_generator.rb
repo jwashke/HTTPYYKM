@@ -12,8 +12,6 @@ module HTTP
                 "content-length: #{output_length}\r\n\r\n"]
       headers.insert(2, location) if status_code == '302 Found'
       headers.join("\r\n")
-      #binding.pry
-      headers
     end
 
     def location
