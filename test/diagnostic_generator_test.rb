@@ -26,5 +26,12 @@ class DiagnosticGeneratorTest < Minitest::Test
     assert_equal diagnostic, (@test_helper.request_diagnostic(raw_request)).split
   end
 
+  def test_returns_incomplete_information_if_request_is_incomplete
+    raw_request = {:verb=>"GET", :path=>"/hello"}
+    diagnostic = ["Verb:", "GET", "Path:", "/hello", "Protocol:", "Host:", "Port:", "Origin:", "Accept:"]
+    assert_equal diagnostic, (@test_helper.request_diagnostic(raw_request)).split
+  end
+
+
 
 end
