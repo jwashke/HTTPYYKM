@@ -68,52 +68,23 @@ class PathTest < Minitest::Test
   end
 
   def test_game_start_creates_new_instance_of_game_class
-    skip 
+    skip
     new_game = @path.get_path_start_game
     assert new_game.instance_of? HTTP::Game
   end
 
   def test_game_returns_forbidden_status_code_correctly
+    @path.get_path_start_game
+    @path.get_path_start_game
+    assert_equal "403 Forbidden", @path.status_code
   end
 
-  def test_game_generates_random_number
-    skip
-    rg = HTTP::Path.new
-    rg.start_game
-    correct_num_one  = rg.correct_number
-    rg2 = HTTP::Path.new
-    rg2.start_game
-    correct_num_two  = rg2.correct_number
-    refute correct_num_one == correct_num_two
+  def test_game_get_path_game_returns_correct_status_code_if_game_nil
+    request_hash = {:verb=>"GET", :path=>"/game", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
+    @path.get_path_game(request_hash)
+    assert_equal "301 Redirect", @path.status_code
   end
 
-  def test_game_count_increases_with_first_guess
-    skip
-    rg = HTTP::Path.new
-    rg.start_game
-    assert_equal 0, rg.game_counter
-    rg.guessing_game(47)
-    assert_equal 1, rg.game_counter
-  end
 
-  def test_game_count_increases_with_second_guess
-    skip
-    rg = HTTP::Path.new
-    rg.start_game
-    assert_equal 0, rg.game_counter
-    rg.guessing_game(47)
-    assert_equal 1, rg.game_counter
-    rg.guessing_game(19)
-    assert_equal 2, rg.game_counter
-  end
-
-  def test_prints_out_players_guess
-  end
-
-  def test_game_knows_if_its_in_progress
-  end
-
-  def test_if_you_start_game_in_progress_will_give_403_error
-  end
 
 end
