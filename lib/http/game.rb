@@ -9,6 +9,7 @@ module HTTP
 
     def game_turn(player_guess, verb)
       if verb == 'GET'
+        puts @correct_number
         if !@last_guess.nil?
           "Your guess was #{@last_guess}. #{guess_check} Total guesses: #{@game_counter}"
         else

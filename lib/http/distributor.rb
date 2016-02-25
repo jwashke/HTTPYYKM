@@ -17,10 +17,7 @@ module HTTP
 
     def initialize
       @path = Path.new
-      @request
-      @header
       @total_requests = 0
-      @output
     end
 
     def redirect_request(request_hash)

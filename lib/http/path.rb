@@ -46,7 +46,7 @@ module HTTP
     def get_path_start_game
       if @game.nil?
         @game = Game.new
-        @status_code = "301 Redirect"
+        @status_code = "302 Found"
         "Good luck!"
       else
         @status_code = "403 Forbidden"
@@ -55,10 +55,13 @@ module HTTP
 
     def get_path_game(request)
       if @game.nil?
-        @status_code = "301 Redirect"
+        @status_code = "200 OK"
         #not actually redirecting
         "You need to start a new game first"
       else
+        @status_code = "200 OK"
+        @status_code = "302 Found" if request[:verb].upcase == 'POST'
+        #puts @status_code
         @game.game_turn(request[:body].to_i, request[:verb])
       end
     end
