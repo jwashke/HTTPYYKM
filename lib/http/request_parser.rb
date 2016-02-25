@@ -15,6 +15,7 @@ module HTTP
     end
 
     def get_verb_path_protocol_and_args(line)
+      puts line
       @request_hash[:verb]     = line.split[0]
       @request_hash[:path]     = line.split[1].split("?")[0]
       @request_hash[:word]     = line.split[1].split("?")[1].split("=")[1] if line.include?("?")

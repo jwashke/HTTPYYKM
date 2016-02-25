@@ -5,11 +5,11 @@ module HTTP
       @game_counter = 0
       @last_guess = nil
       @correct_number = rand(1..100)
-      #binding.pry
     end
 
     def game_turn(player_guess, verb)
       if verb == 'GET'
+        puts @correct_number
         if !@last_guess.nil?
           "Your guess was #{@last_guess}. #{guess_check} Total guesses: #{@game_counter}"
         else
@@ -17,8 +17,6 @@ module HTTP
         end
       else
         @last_guess = player_guess
-        # generate_output("You are being redirected.")
-        # game_turn(player_guess, 'GET')
       end
     end
 

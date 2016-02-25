@@ -17,10 +17,7 @@ module HTTP
 
     def initialize
       @path = Path.new
-      @request
-      @header
       @total_requests = 0
-      @output
     end
 
     def redirect_request(request_hash)
@@ -43,13 +40,14 @@ module HTTP
       else
         output = @path.get_path_not_found
       end
-
+      #binding.pry
       generate_output(output, @path.status_code)
     end
 
     def generate_output(output, status_code = "200 OK")
       @output = generate_html(output)
-      @header = get_header(@output, status_code)
+      @header = generate_header(@output.length, status_code)
+      #binding.pry
     end
   end
 end
