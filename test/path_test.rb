@@ -21,18 +21,26 @@ class PathTest < Minitest::Test
     assert_equal ["Verb:", "GET", "Path:", "/", "Protocol:", "HTTP/1.1", "Host:", "127.0.0.1", "Port:", "9292", "Origin:", "127.0.0.1", "Accept:"], @path.get_path_root(request_hash).split
   end
 
+  def test_get_path_not_found_returns_correct_status_code
+    assert_equal "404 Not Found", @path.get_path_not_found
+    assert_equal "404 Not Found", @path.status_code
+  end
+
+  def test_get_path_datetime_returns_correct_date_and_time
+    time = Time.now.strftime('%a, %e %b %Y %H:%M:%S %z')
+    assert_equal time, @path.get_path_datetime
+  end
+
+  def test_get_path_datetime_returns_correct_status_code
+    @path.get_path_datetime
+    assert_equal "200 OK", @path.status_code 
+  end
+
   def test_game_starts_with_good_luck_message
     skip
     assert_equal "Good Luck!", @path.start_game
   end
 
-
-  def test_reponse_generator_starts_game_with_game_counter_as_zero
-    skip
-    response_generator = HTTP::Path.new
-    response_generator.start_game
-    assert_equal 0, response_generator.game_counter
-  end
 
   def test_game_generates_random_number
     skip
