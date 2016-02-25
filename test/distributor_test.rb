@@ -41,12 +41,9 @@ class DistributorTest < Minitest::Test
     assert_equal 1, @distributor.total_requests
   end
 
-
   def test_path_checker_sends_to_get_path_root
-    skip
     request_hash = {:verb=>"GET", :path=>"/", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
-    @distributor.path_checker(request_hash)
-    assert_equal " ", output
+    assert @distributor.path_checker(request_hash) == @distributor.path.get_path_root(request_hash)
   end
 
   def test_path_checker_sends_to_root_and_200_status
