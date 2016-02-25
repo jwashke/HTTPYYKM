@@ -13,7 +13,7 @@ module HTTP
     include HeaderGenerator
     include OutputGenerator
 
-    attr_reader :header, :output, :total_requests, :request
+    attr_reader :header, :total_requests, :request, :output, :path
 
     def initialize
       @path = Path.new
@@ -22,6 +22,11 @@ module HTTP
 
     def redirect_request(request_hash)
       @total_requests += 1
+      output = path_checker(request_hash)
+      generate_output(output, @path.status_code)
+    end
+
+    def path_checker(request_hash)
       @request = request_hash
       if @request[:path] == '/'
         output = @path.get_path_root(@request)
@@ -42,7 +47,6 @@ module HTTP
       else
         output = @path.get_path_not_found
       end
-      generate_output(output, @path.status_code)
     end
 
     def generate_output(output, status_code = "200 OK")

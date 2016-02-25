@@ -5,13 +5,11 @@ require_relative 'output_generator'
 module HTTP
   class Path
     include OutputGenerator
-
-    attr_reader :status_code
-
+      attr_reader :status_code, :word_search, :game
+      attr_accessor :count
     def initialize
       @word_search = WordSearch.new
       @count = 0
-      @status_code
     end
 
     def get_path_root(request)
@@ -20,7 +18,6 @@ module HTTP
 
     def get_path_not_found
       @status_code = "404 Not Found"
-      "404 Not Found"
     end
 
     def get_path_datetime
@@ -62,12 +59,10 @@ module HTTP
     def get_path_game(request)
       if @game.nil?
         @status_code = "200 OK"
-        #not actually redirecting
         "You need to start a new game first"
       else
         @status_code = "200 OK"
         @status_code = "302 Found" if request[:verb].upcase == 'POST'
-        #puts @status_code
         @game.game_turn(request[:body].to_i, request[:verb])
       end
     end
