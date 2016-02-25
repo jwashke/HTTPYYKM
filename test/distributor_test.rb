@@ -12,17 +12,10 @@ class DistributorTest < Minitest::Test
     @distributor.instance_of? HTTP::Distributor
   end
 
-  def distributor_initalizes_shutdown_as_false
-    refute @distributor.shutdown
-  end
-
   def distributor_initalizes_total_requests_as_zero
     assert_equal 0, @distributor.total_requests
   end
 
-  def distributor_initalizes_count_as_zero
-    assert_equal 0, @distributor.count
-  end
 
   def test_response_says_hello_world_with_get_path_hello
     @distributor.get_path_hello
