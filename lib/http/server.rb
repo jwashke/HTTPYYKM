@@ -14,13 +14,32 @@ module HTTP
 
 
     def server_start
-      puts "Ready for a request"
       distributor = Distributor.new
       loop do
+        puts "Ready for a request"
         Thread.new(@tcp_server.accept) do |client|
           start_new_thread(client, distributor)
         end
       end
+    end
+
+    def start_new_thread(client, distributor)
+      request = get_request(client)
+      unless request.first.include?('favicon')
+        request_hash = RequestParser.new.parse_request(request)
+        request_hash[:body] = get_body(request, client)
+        distributor.redirect_request(request_hash)
+        response = distributor.output
+        header = distributor.header
+        send_response(client, header, response)
+        client.close
+      end
+      shutdown_server if request_hash[:path] == '/shutdown'
+    end
+
+    def send_response(client, header, response)
+      client.puts header
+      client.puts response
     end
 
     def get_request(client)
@@ -31,24 +50,11 @@ module HTTP
       request
     end
 
-    def start_new_thread(client, distributor)
-      request = get_request(client)
-      unless request.first.include?('favicon')
-        request_hash = RequestParser.new.parse_request(request)
-        if request.join.include?('Content-Length:')
-          body_length = request[1].split[1]
-          request_hash[:body] = client.read(body_length.to_i)
-        end
-        distributor.redirect_request(request_hash)
-        response = distributor.output
-        header = distributor.header
-        client.puts header
-        client.puts response
-        client.close
-      end
-      shutdown_server if request_hash[:path] == '/shutdown'
+    def get_body(request, client)
+      return nil unless request.join.include?('Content-Length:')
+      body_length = request[1].split[1]
+      client.read(body_length.to_i)
     end
-
 
     def shutdown_server
       puts "Shutting down"
@@ -56,8 +62,6 @@ module HTTP
     end
   end
 end
-
-
 
 s = HTTP::Server.new
 s.server_start
