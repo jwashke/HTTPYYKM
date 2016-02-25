@@ -116,4 +116,10 @@ class DistributorTest < Minitest::Test
     assert_equal "http/1.1 200 OK", @distributor.header[0]
   end
 
+  def test_generate_output_gives_correct_header_for_a_diff_status_code
+    output = "Total Requests: 1"
+    @distributor.generate_output(output, "404 Not Found")
+    assert_equal "http/1.1 404 Not Found", @distributor.header[0]
+  end
+
 end
