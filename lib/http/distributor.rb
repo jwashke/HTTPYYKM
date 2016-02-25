@@ -25,7 +25,10 @@ module HTTP
       output = path_checker(request_hash)
       generate_output(output, @path.status_code)
     end
-
+   #
+  #   if @request[:path] == hash[key]
+  #     output = @path.(hash[values])(request)
+  #  generate_output(output)
     def path_checker(request_hash)
       @request = request_hash
       if @request[:path] == '/'
