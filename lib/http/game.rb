@@ -2,9 +2,9 @@ require 'pry'
 module HTTP
   class Game
     attr_reader :correct_number
+    attr_accessor :game_counter
     def initialize
       @game_counter = 0
-      @last_guess = nil
       @correct_number = rand(1..100)
     end
 

@@ -8,6 +8,10 @@ class GameTest < Minitest::Test
     @game = HTTP::Game.new
   end
 
+  def test_game_counter_initialized_to_0
+    assert_equal 0, @game.game_counter
+  end
+
   def test_game_tells_too_high
     @game.game_turn(162, "POST")
     assert_equal "Your guess is too high; try again.", @game.guess_check
@@ -21,6 +25,16 @@ class GameTest < Minitest::Test
   def test_game_tells_correct
     @game.game_turn(42, "POST")
     assert_equal "You got it right! Way to go!", @game.guess_check
+  end
+
+  def test_game_counter_increments_correctly
+    @game.game_turn(2, "POST")
+    @game.guess_check
+    @game.game_turn(12, "POST")
+    @game.guess_check
+    @game.game_turn(45, "POST")
+    @game.guess_check
+    assert_equal 3, @game.game_counter
   end
 
 end
