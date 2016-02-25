@@ -12,7 +12,6 @@ module HTTP
       @distributor = Distributor.new
     end
 
-
     def server_start
       distributor = Distributor.new
       loop do
@@ -26,15 +25,24 @@ module HTTP
     def start_new_thread(client, distributor)
       request = get_request(client)
       unless request.first.include?('favicon')
-        request_hash = RequestParser.new.parse_request(request)
-        request_hash[:body] = get_body(request, client)
-        distributor.redirect_request(request_hash)
-        response = distributor.output
-        header = distributor.header
-        send_response(client, header, response)
-        client.close
+        request_hash = parse_and_send_response(request, client, distributor)
       end
       shutdown_server if request_hash[:path] == '/shutdown'
+    end
+
+    def parse_and_send_response(request, client, distributor)
+      request_hash = RequestParser.new.parse_request(request)
+      request_hash[:body] = get_body(request, client)
+      header_and_response_redirect(request_hash, client, distributor)
+      client.close
+      request_hash
+    end
+
+    def header_and_response_redirect(request_hash, client, distributor)
+      distributor.redirect_request(request_hash)
+      response = distributor.output
+      header = distributor.header
+      send_response(client, header, response)
     end
 
     def send_response(client, header, response)
