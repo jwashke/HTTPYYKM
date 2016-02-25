@@ -1,6 +1,7 @@
 module HTTP
   module HeaderGenerator
     def generate_header(output_length, status_code)
+      # binding.pry
       headers(output_length, status_code)
     end
     def headers(output_length, status_code)

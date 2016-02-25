@@ -26,7 +26,7 @@ module HTTP
         unless request.first.include?('favicon')
           puts request
           request_hash = request_parser.parse_request(request)
-          end
+          # end
           distributor.redirect_request(request_hash)
           response = distributor.output
           header = distributor.header

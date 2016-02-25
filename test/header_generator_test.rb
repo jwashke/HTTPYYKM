@@ -6,4 +6,8 @@ class HeaderGeneratorTest < Minitest::Test
   def setup
     @test_helper = TestHelper.new
   end
+
+  def test_generate_header_returns_correct_header_info
+
+  end
 end
