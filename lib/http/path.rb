@@ -9,6 +9,7 @@ module HTTP
     def initialize
       @word_search = WordSearch.new
       @count = 0
+      @status_code
     end
 
     def get_path_root(request)
@@ -16,14 +17,17 @@ module HTTP
     end
 
     def get_path_not_found
+      @status_code = "404 Not Found"
       "404 Not Found"
     end
 
     def get_path_datetime
+      @status_code = "200 OK"
       "#{Time.now.strftime('%a, %e %b %Y %H:%M:%S %z')}"
     end
 
     def get_path_shutdown(total_requests)
+
       "Total Requests: #{total_requests}"
     end
 
@@ -38,15 +42,22 @@ module HTTP
     end
 
     def get_path_start_game
-      @game = Game.new
-      "Good luck!"
+      if @game.nil?
+        @game = Game.new
+        @status_code = "301 Redirect"
+        "Good luck!"
+      else
+        @status_code = "403 Forbidden"
+      end
     end
 
     def get_path_game(request)
       if @game.nil?
+        @status_code = "301 Redirect"
+        #not actually redirecting
         "You need to start a new game first"
       else
-        response = @game.game_turn(request[:body].to_i, request[:verb])
+        @game.game_turn(request[:body].to_i, request[:verb])
       end
     end
   end

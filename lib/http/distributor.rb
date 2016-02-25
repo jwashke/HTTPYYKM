@@ -43,7 +43,8 @@ module HTTP
       else
         output = @path.get_path_not_found
       end
-      generate_output(output)
+
+      generate_output(output, @path.status_code)
     end
 
     def generate_output(output, status_code = "200 OK")
