@@ -5,6 +5,7 @@ class TestHelper
   include HTTP::HTMLGenerator
   include HTTP::HeaderGenerator
   include HTTP::StatusCodes
+  include HTTP::DiagnosticGenerator
 end
 
 require 'simplecov'

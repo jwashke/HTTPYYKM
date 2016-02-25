@@ -1,3 +1,4 @@
+require 'pry'
 module HTTP
   module DiagnosticGenerator
     def request_diagnostic(request)
