@@ -1,6 +1,8 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/http/distributor'
+require_relative '../lib/http/path'
+require_relative 'test_helper'
 require 'pry'
 
 class DistributorTest < Minitest::Test
@@ -17,10 +19,10 @@ class DistributorTest < Minitest::Test
   end
 
   def test_response_says_hello_world_with_get_path_hello
-    skip
+    path = HTTP::Path.new
     request_hash = {:verb=>"GET", :path=>"/hello", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
     @distributor.redirect_request(request_hash)
-    assert_equal "<html><head></head><body><pre>Hello World! (1)</pre></body></html>", @distributor.output
+    assert_equal "Hello World! (1)", output
   end
 
   def test_response_says_hello_world_with_different_number
@@ -116,76 +118,5 @@ class DistributorTest < Minitest::Test
     @distributor.redirect_request(request_hash)
     assert_equal "<html><head></head><body><pre>Total Requests: 1</pre></body></html>", @distributor.output
   end
-
-  def test_get_header_produces_correct_header_for_shutdown
-    skip
-    output = "<html><head></head><body><pre>Total Requests: 1</pre></body></html>"
-    status_code = "200 OK"
-    get_header_output = @distributor.get_header(output, status_code)
-    assert_equal " ", get_header_output
-    assert_equal " ", get_header_output.output
-  end
-
-  def test_request_diagnostic_returns_correct_output
-
-  end
-
-  def test_shutdown_returns_correct_output
-
-  end
-
-  class ResponseGeneratorTest < Minitest::Test
-    def test_game_starts_with_good_luck_message
-      rg = HTTP::ResponseGenerator.new
-      assert_equal "Good Luck!", rg.start_game
-    end
-
-    def test_reponse_generator_starts_game_with_game_counter_as_zero
-      response_generator = HTTP::ResponseGenerator.new
-      response_generator.start_game
-      assert_equal 0, response_generator.game_counter
-    end
-
-    def test_game_generates_random_number
-      rg = HTTP::ResponseGenerator.new
-      rg.start_game
-      correct_num_one  = rg.correct_number
-      rg2 = HTTP::ResponseGenerator.new
-      rg2.start_game
-      correct_num_two  = rg2.correct_number
-      refute correct_num_one == correct_num_two
-    end
-
-    def test_game_count_increases_with_first_guess
-      rg = HTTP::ResponseGenerator.new
-      rg.start_game
-      assert_equal 0, rg.game_counter
-      rg.guessing_game(47)
-      assert_equal 1, rg.game_counter
-    end
-
-    def test_game_count_increases_with_second_guess
-      rg = HTTP::ResponseGenerator.new
-      rg.start_game
-      assert_equal 0, rg.game_counter
-      rg.guessing_game(47)
-      assert_equal 1, rg.game_counter
-      rg.guessing_game(19)
-      assert_equal 2, rg.game_counter
-    end
-
-    def test_prints_out_players_guess
-    end
-
-    def test_game_knows_if_its_in_progress
-    end
-
-    def test_if_you_start_game_in_progress_will_give_403_error
-    end
-
-  end
-
-
-
 
 end

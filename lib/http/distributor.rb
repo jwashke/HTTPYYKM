@@ -24,7 +24,7 @@ module HTTP
     end
 
     def redirect_request(request_hash)
-      binding.pry
+      # binding.pry
       @total_requests += 1
       @request = request_hash
       if @request[:path] == '/'
@@ -44,6 +44,7 @@ module HTTP
       else
         output = @path.get_path_not_found
       end
+      # binding.pry
       generate_output(output, @path.status_code)
     end
 
