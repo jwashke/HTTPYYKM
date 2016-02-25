@@ -85,6 +85,15 @@ class PathTest < Minitest::Test
     assert_equal "301 Redirect", @path.status_code
   end
 
+  def test_game_get_path_game_returns_prompt_if_no_start_game
+    request_hash = {:verb=>"GET", :path=>"/game", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
+    assert_equal "You need to start a new game first", @path.get_path_game(request_hash)
+  end
 
+  def test_game_will_redirect_to_game_turn_and_last_guess_if_game_has_begun
+    request_hash = {:verb=>"POST", :path=>"/game", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
+    @path.get_path_start_game
+    assert_equal 0, @path.get_path_game(request_hash)
+  end
 
 end
