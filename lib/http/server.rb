@@ -23,11 +23,16 @@ module HTTP
       end
     end
 
-    def start_new_thread(client, distributor)
+    def get_request(client)
       request = []
       while line = client.gets and !line.chomp.empty? do
         request << line.chomp
       end
+      request
+    end
+
+    def start_new_thread(client, distributor)
+      request = get_request(client)
       unless request.first.include?('favicon')
         request_hash = RequestParser.new.parse_request(request)
         if request.join.include?('Content-Length:')
@@ -43,6 +48,7 @@ module HTTP
       end
       shutdown_server if request_hash[:path] == '/shutdown'
     end
+
 
     def shutdown_server
       puts "Shutting down"
