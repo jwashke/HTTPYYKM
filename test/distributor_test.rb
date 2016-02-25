@@ -110,4 +110,10 @@ class DistributorTest < Minitest::Test
     assert_equal "<html><head></head><body><pre>Total Requests: 1</pre></body></html>", @distributor.output
   end
 
+  def test_generate_output_header_has_correct_beginning
+    output = "Total Requests: 1"
+    @distributor.generate_output(output)
+    assert_equal "http/1.1 200 OK", @distributor.header[0]
+  end
+
 end
