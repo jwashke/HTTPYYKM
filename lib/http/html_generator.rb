@@ -1,6 +1,5 @@
 module HTTP
   module HTMLGenerator
-
     def wrap_response(response)
       "<pre>#{response}</pre>"
     end

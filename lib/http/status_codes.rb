@@ -4,8 +4,8 @@ module HTTP
       "200 OK"
     end
 
-    def moved_permanently
-      "301 Moved Permanently"
+    def found
+      "302 Found"
     end
 
     def unauthorized

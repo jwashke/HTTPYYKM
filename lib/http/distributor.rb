@@ -1,6 +1,5 @@
 require_relative 'html_generator'
 require_relative 'header_generator'
-require_relative 'output_generator'
 require_relative 'path'
 require 'pry'
 
@@ -8,7 +7,6 @@ module HTTP
   class Distributor
     include HTMLGenerator
     include HeaderGenerator
-    include OutputGenerator
 
     attr_reader :header, :total_requests, :request, :output, :path
 

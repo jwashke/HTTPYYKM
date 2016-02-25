@@ -42,37 +42,5 @@ module HTTP
     def request_hash
       @request_hash
     end
-
-    def verb
-      @request_hash[:verb]
-    end
-
-    def path
-      @request_hash[:path]
-    end
-
-    def protocol
-      @request_hash[:protocol]
-    end
-
-    def host
-      @request_hash[:host]
-    end
-
-    def port
-      @request_hash[:port]
-    end
-
-    def origin
-      @request_hash[:origin]
-    end
-
-    def accept
-      @request_hash[:accept]
-    end
-
-    def word
-      @request_hash[:word]
-    end
   end
 end

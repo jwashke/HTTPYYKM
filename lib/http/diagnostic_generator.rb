@@ -1,6 +1,5 @@
 module HTTP
-  module OutputGenerator
-
+  module DiagnosticGenerator
     def request_diagnostic(request)
       "Verb: #{request[:verb]}\n" +
       "Path: #{request[:path]}\n" +

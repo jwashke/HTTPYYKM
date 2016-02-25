@@ -1,12 +1,16 @@
 require_relative 'word_search'
 require_relative 'game'
-require_relative 'output_generator'
+require_relative 'diagnostic_generator'
+require_relative 'status_codes'
 
 module HTTP
   class Path
-    include OutputGenerator
-      attr_reader :status_code, :word_search, :game
-      attr_accessor :count
+    include DiagnosticGenerator
+    include StatusCodes
+
+    attr_reader :status_code, :word_search, :game
+    attr_accessor :count
+
     def initialize
       @word_search = WordSearch.new
       @count = 0
@@ -17,11 +21,11 @@ module HTTP
     end
 
     def get_path_not_found
-      @status_code = "404 Not Found"
+      @status_code = not_found
     end
 
     def get_path_datetime
-      @status_code = "200 OK"
+      @status_code = ok
       "#{Time.now.strftime('%a, %e %b %Y %H:%M:%S %z')}"
     end
 
@@ -40,7 +44,7 @@ module HTTP
     end
 
     def get_path_error
-      @status_code = "500 Internal Server Error"
+      @status_code = internal_server_error
       raise SystemError
       rescue => detail
       detail.backtrace.join("\n")
@@ -49,20 +53,20 @@ module HTTP
     def get_path_start_game
       if @game.nil?
         @game = Game.new
-        @status_code = "302 Found"
+        @status_code = found
         "Good luck!"
       else
-        @status_code = "403 Forbidden"
+        @status_code = forbidden
       end
     end
 
     def get_path_game(request)
       if @game.nil?
-        @status_code = "200 OK"
+        @status_code = ok
         "You need to start a new game first"
       else
-        @status_code = "200 OK"
-        @status_code = "302 Found" if request[:verb].upcase == 'POST'
+        @status_code = ok
+        @status_code = found if request[:verb].upcase == 'POST'
         @game.game_turn(request[:body].to_i, request[:verb])
       end
     end
