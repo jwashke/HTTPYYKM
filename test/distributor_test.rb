@@ -90,10 +90,9 @@ class DistributorTest < Minitest::Test
   end
 
   def test_shutdown_returns_correct_total_requests
-    skip
     request_hash = {:verb=>"GET", :path=>"/shutdown", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
-    @distributor.path_checker(request_hash)
-    assert_equal "<html><head></head><body><pre>Total Requests: 1</pre></body></html>", @distributor.output
+    @distributor.redirect_request(request_hash)
+    assert_equal "Total Requests: 1", @distributor.path_checker(request_hash)
   end
 
 end
