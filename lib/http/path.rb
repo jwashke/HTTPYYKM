@@ -5,7 +5,7 @@ require_relative 'output_generator'
 module HTTP
   class Path
     include OutputGenerator
-      attr_reader :status_code
+      attr_reader :status_code, :word_search
       attr_accessor :count
     def initialize
       @word_search = WordSearch.new

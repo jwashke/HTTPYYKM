@@ -13,8 +13,8 @@ class PathTest < Minitest::Test
   end
 
   def test_path_initializes_with_ws_instance
-
-end
+    assert @path.word_search.instance_of? HTTP::WordSearch
+  end
 
   def test_game_starts_with_good_luck_message
     skip
