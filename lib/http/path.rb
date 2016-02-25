@@ -5,7 +5,7 @@ require_relative 'output_generator'
 module HTTP
   class Path
     include OutputGenerator
-      attr_reader :status_code, :word_search
+      attr_reader :status_code, :word_search, :game
       attr_accessor :count
     def initialize
       @word_search = WordSearch.new
@@ -26,7 +26,6 @@ module HTTP
     end
 
     def get_path_shutdown(total_requests)
-
       "Total Requests: #{total_requests}"
     end
 
