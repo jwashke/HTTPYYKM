@@ -42,6 +42,8 @@ module HTTP
         output = @path.get_path_start_game
       elsif @request[:path] == '/game'
         output = @path.get_path_game(request)
+      elsif @request[:path] == '/force_error'
+        output = @path.get_path_error
       else
         output = @path.get_path_not_found
       end
@@ -49,7 +51,7 @@ module HTTP
 
     def generate_output(output, status_code = "200 OK")
       @output = generate_html(output)
-      @header = get_header(@output, status_code)
+      @header = generate_header(@output.length, status_code)
     end
   end
 end

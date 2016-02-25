@@ -1,9 +1,9 @@
 module HTTP
   module HeaderGenerator
     def generate_header(output_length, status_code)
-      # binding.pry
       headers(output_length, status_code)
     end
+
     def headers(output_length, status_code)
       headers = ["http/1.1 #{status_code}",
                 "date: #{Time.now.strftime('%a, %e %b %Y %H:%M:%S %z')}",
@@ -12,9 +12,8 @@ module HTTP
                 "content-length: #{output_length}\r\n\r\n"]
       headers.insert(2, location) if status_code == '302 Found'
       headers.join("\r\n")
-      puts headers
-      headers
     end
+
     def location
       "Location: http://127.0.0.1:9292/game\r\n"
     end

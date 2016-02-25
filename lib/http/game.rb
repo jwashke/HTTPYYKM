@@ -5,11 +5,12 @@ module HTTP
     attr_accessor :game_counter
     def initialize
       @game_counter = 0
-      @correct_number = rand(1..100)
+      @correct_number = generate_random_number
     end
 
     def game_turn(player_guess, verb)
       if verb == 'GET'
+        puts @correct_number
         if !@last_guess.nil?
           "Your guess was #{@last_guess}. #{guess_check} Total guesses: #{@game_counter}"
         else
@@ -27,8 +28,13 @@ module HTTP
       elsif @last_guess < @correct_number
         "Your guess is too low; try again."
       else
-        "You got it right! Way to go!"
+        "You got it right! Way to go! The number has been changed, try again!"
+        @correct_number = generate_random_number
       end
+    end
+
+    def generate_random_number
+      rand(1..100)
     end
 
   end
