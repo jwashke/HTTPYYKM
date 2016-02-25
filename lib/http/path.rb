@@ -29,7 +29,6 @@ module HTTP
     end
 
     def get_path_shutdown(total_requests)
-
       "Total Requests: #{total_requests}"
     end
 
@@ -41,6 +40,13 @@ module HTTP
     def get_path_word_search(request)
       word = request[:word]
       @word_search.check_word(word)
+    end
+
+    def get_path_error
+      @status_code = "500 Internal Server Error"
+      raise SystemError
+      rescue => detail
+      detail.backtrace.join("\n")
     end
 
     def get_path_start_game
