@@ -11,11 +11,11 @@ module HTTP
     end
 
     def is_word(word)
-      "#{word} is a known word"
+      "#{word.capitalize} is a known word."
     end
 
     def is_not_word(word)
-      "#{word} is not a known word"
+      "#{word.capitalize} is not a known word."
     end
   end
 end

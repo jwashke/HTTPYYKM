@@ -1,8 +1,5 @@
 require_relative 'html_generator'
 require_relative 'header_generator'
-require_relative 'request_parser'
-require_relative 'word_search'
-require_relative 'game'
 require_relative 'output_generator'
 require_relative 'path'
 require 'pry'

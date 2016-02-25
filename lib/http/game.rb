@@ -9,15 +9,14 @@ module HTTP
     end
 
     def game_turn(player_guess, verb)
-      if verb == 'GET'
-        puts @correct_number
-        if !@last_guess.nil?
-          "Your guess was #{@last_guess}. #{guess_check} Total guesses: #{@game_counter}"
-        else
-          "Please make a guess between 1 and 100"
-        end
+      verb == 'GET' ? last_guess_check : @last_guess = player_guess
+    end
+
+    def last_guess_check
+      if !@last_guess.nil?
+        "Your guess was #{@last_guess}. #{guess_check} Total guesses: #{@game_counter}"
       else
-        @last_guess = player_guess
+        "Please make a guess between 1 and 100"
       end
     end
 
@@ -30,7 +29,6 @@ module HTTP
       else
         @correct_number = generate_random_number
         "You got it right! Way to go! The number has been changed, try again!"
-
       end
     end
 
