@@ -1,4 +1,3 @@
-require 'pry'
 module HTTP
   class Game
     attr_reader :correct_number
@@ -35,6 +34,5 @@ module HTTP
     def generate_random_number
       rand(1..100)
     end
-
   end
 end
