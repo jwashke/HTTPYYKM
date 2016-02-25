@@ -80,10 +80,8 @@ class DistributorTest < Minitest::Test
   end
 
   def test_path_checker_sends_to_404_if_incorrect_path
-    skip
     request_hash = {:verb=>"GET", :path=>"/lolz", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
-    @distributor.path_checker(request_hash)
-    assert_equal " ", output
+    assert_equal "404 Not Found", @distributor.path_checker(request_hash)
   end
 
   def test_path_checker_sends_to_404_if_incorrect_path_different
