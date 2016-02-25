@@ -19,9 +19,16 @@ class GameTest < Minitest::Test
   end
 
   def test_game_tells_correct
-    skip
-    assert_equal "You got it right! Way too go!", @game.guess_check(45, 45)
+    @game.game_turn(42, "POST")
+    assert_equal "You got it right! Way to go!", @game.guess_check
   end
 
+end
+
+class HTTP::Game
+  def initialize
+    @correct_number = 42
+    @game_counter = 0
+  end
 
 end
