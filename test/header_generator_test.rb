@@ -10,7 +10,7 @@ class HeaderGeneratorTest < Minitest::Test
 
   def test_generate_header_returns_correct_header_info
     output = @test_helper.generate_header(144, "302 Found")
-    output_answer = ["http/1.1", "302", "Found", "date:"]
+    output_answer = ["HTTP/1.1", "302", "Found", "date:"]
     assert_equal output_answer, output.split[0..3]
   end
 end

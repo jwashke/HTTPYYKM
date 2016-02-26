@@ -9,7 +9,6 @@ module HTTP
     end
 
     def parse_request(raw_request)
-    #  binding.pry
       @raw_request = raw_request
       get_verb_path_protocol_and_args(raw_request.shift)
       headers_hash = parse_rest_of_request(@raw_request).to_h

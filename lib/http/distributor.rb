@@ -20,10 +20,7 @@ module HTTP
       output = path_checker(request_hash)
       generate_output(output, @path.status_code)
     end
-   #
-  #   if @request[:path] == hash[key]
-  #     output = @path.(hash[values])(request)
-  #  generate_output(output)
+
     def path_checker(request_hash)
       @request = request_hash
       if @request['Path'] == '/'
@@ -48,7 +45,6 @@ module HTTP
     end
 
     def generate_output(output, status_code = "200 OK")
-      #binding.pry
       @output = generate_html(output)
       @header = generate_header(@output.length, status_code)
     end
