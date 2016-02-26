@@ -1,8 +1,94 @@
 {
   "Unit Tests": {
     "coverage": {
+      "/Users/Josh/turing/1module/HTTPYYKM/lib/http/html_generator.rb": [
+        1,
+        1,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/Josh/turing/1module/HTTPYYKM/lib/http/status_codes.rb": [
+        1,
+        1,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/Josh/turing/1module/HTTPYYKM/lib/http/header_generator.rb": [
+        1,
+        1,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        1,
+        null,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/Josh/turing/1module/HTTPYYKM/lib/http/diagnostic_generator.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0,
+        null,
+        null,
+        null
+      ]
     },
-    "timestamp": 1456445582
+    "timestamp": 1456463491
   },
   "MiniTest": {
     "coverage": {
@@ -814,6 +900,6 @@
         null
       ]
     },
-    "timestamp": 1456461067
+    "timestamp": 1456462738
   }
 }

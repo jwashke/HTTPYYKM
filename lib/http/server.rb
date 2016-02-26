@@ -69,6 +69,10 @@ module HTTP
       body_length = request_hash['Content-Length']
       client.read(body_length.to_i)
     end
+
+    def stop_server
+      exit
+    end
   end
 end
 

@@ -9,4 +9,8 @@ class TestHelper
   include HTTP::HeaderGenerator
   include HTTP::StatusCodes
   include HTTP::DiagnosticGenerator
+
+  def hello_response_body
+    "<html><head></head><body><pre>Hello World! (1)</pre></body></html>"
+  end
 end
