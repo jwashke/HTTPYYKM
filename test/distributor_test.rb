@@ -68,9 +68,9 @@ class DistributorTest < Minitest::Test
   end
 
   def test_path_checker_sends_to_game_with_notice_if_start_game_hasnt_happened
-    request_hash = {:verb=>"GET", 'Path'=>"/start_game", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
+    request_hash = {'Verb'=>"GET", 'Path'=>"/start_game", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
     @distributor.path_checker(request_hash)
-    request_hash = {:verb=>"GET", 'Path'=>"/game", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
+    request_hash = {'Verb'=>"GET", 'Path'=>"/game", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
     assert_equal "Please make a guess between 1 and 100", @distributor.path_checker(request_hash)
   end
 
