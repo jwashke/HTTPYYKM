@@ -1,7 +1,7 @@
+require_relative 'test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/http/game'
-require_relative 'test_helper'
 
 class GameTest < Minitest::Test
   def setup

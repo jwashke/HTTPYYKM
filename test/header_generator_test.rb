@@ -1,7 +1,7 @@
+require_relative 'test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/http/header_generator'
-require_relative 'test_helper'
 
 class HeaderGeneratorTest < Minitest::Test
   def setup

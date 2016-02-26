@@ -1,7 +1,7 @@
+require_relative 'test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/http/path'
-require_relative 'test_helper'
 
 class PathTest < Minitest::Test
   def setup
