@@ -77,7 +77,6 @@ class DistributorTest < Minitest::Test
   def test_path_checker_sends_to_word_search_if_word_all_caps
     request_hash = {:verb=>"GET", :path=>"/word_search", :word=>"COFFEE", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
     assert_equal "Coffee is a known word.", @distributor.path_checker(request_hash)
-
   end
 
   def test_path_checker_sends_to_word_search
@@ -88,6 +87,12 @@ class DistributorTest < Minitest::Test
   def test_path_checker_sends_to_word_search_with_incorrect_word
     request_hash = {:verb=>"GET", :path=>"/word_search", :word=>"cfryye", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
     assert_equal "Cfryye is not a known word.", @distributor.path_checker(request_hash)
+  end
+
+  def test_path_checker_sends_to_error_path
+    request_hash = {:verb=>"GET", :path=>"/force_error", :word=>"cfryye", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
+    back_trace = @distributor.path_checker(request_hash)
+    assert back_trace.include?("Users")
   end
 
   def test_path_checker_sends_to_404_if_incorrect_path

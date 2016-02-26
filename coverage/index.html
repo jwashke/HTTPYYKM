@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-02-25T18:27:24-07:00">2016-02-25T18:27:24-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-02-25T18:30:07-07:00">2016-02-25T18:30:07-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">99.11%</span></span>
+    (<span class="covered_percent"><span class="green">99.34%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.4
+         2.43
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>19</b> files in total.
-    <b>448</b> relevant lines. 
-    <span class="green"><b>444</b> lines covered</span> and
-    <span class="red"><b>4</b> lines missed </span>
+    <b>452</b> relevant lines. 
+    <span class="green"><b>449</b> lines covered</span> and
+    <span class="red"><b>3</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -62,12 +62,12 @@
       
       <tr>
         <td class="strong"><a href="#cff53abda222d92f5fef1dd7123720095d489d76" class="src_link" title="lib/http/distributor.rb">lib/http/distributor.rb</a></td>
-        <td class="green strong">97.37 %</td>
+        <td class="green strong">100.0 %</td>
         <td>55</td>
         <td>38</td>
-        <td>37</td>
-        <td>1</td>
-        <td>6.4</td>
+        <td>38</td>
+        <td>0</td>
+        <td>6.7</td>
       </tr>
       
       <tr>
@@ -107,7 +107,7 @@
         <td>45</td>
         <td>45</td>
         <td>0</td>
-        <td>4.5</td>
+        <td>4.6</td>
       </tr>
       
       <tr>
@@ -127,7 +127,7 @@
         <td>14</td>
         <td>14</td>
         <td>0</td>
-        <td>2.5</td>
+        <td>2.6</td>
       </tr>
       
       <tr>
@@ -137,15 +137,15 @@
         <td>12</td>
         <td>12</td>
         <td>0</td>
-        <td>6.7</td>
+        <td>6.8</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#e78caff21a1d227b80c85a459166fc18eefe6391" class="src_link" title="test/distributor_test.rb">test/distributor_test.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>136</td>
-        <td>87</td>
-        <td>87</td>
+        <td>141</td>
+        <td>91</td>
+        <td>91</td>
         <td>0</td>
         <td>1.2</td>
       </tr>
@@ -361,11 +361,11 @@
         <div class="source_table" id="cff53abda222d92f5fef1dd7123720095d489d76">
   <div class="header">
     <h3>lib/http/distributor.rb</h3>
-    <h4><span class="green">97.37 %</span> covered</h4>
+    <h4><span class="green">100.0 %</span> covered</h4>
     <div>
       <b>38</b> relevant lines. 
-      <span class="green"><b>37</b> lines covered</span> and
-      <span class="red"><b>1</b> lines missed.</span>
+      <span class="green"><b>38</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
   
@@ -450,14 +450,14 @@
           <code class="ruby">    def initialize</code>
         </li>
       
-        <li class="covered" data-hits="23" data-linenumber="14">
-          <span class="hits">23</span>
+        <li class="covered" data-hits="24" data-linenumber="14">
+          <span class="hits">24</span>
           
           <code class="ruby">      @path = Path.new</code>
         </li>
       
-        <li class="covered" data-hits="23" data-linenumber="15">
-          <span class="hits">23</span>
+        <li class="covered" data-hits="24" data-linenumber="15">
+          <span class="hits">24</span>
           
           <code class="ruby">      @total_requests = 0</code>
         </li>
@@ -534,14 +534,14 @@
           <code class="ruby">    def path_checker(request_hash)</code>
         </li>
       
-        <li class="covered" data-hits="24" data-linenumber="28">
-          <span class="hits">24</span>
+        <li class="covered" data-hits="25" data-linenumber="28">
+          <span class="hits">25</span>
           
           <code class="ruby">      @request = request_hash</code>
         </li>
       
-        <li class="covered" data-hits="24" data-linenumber="29">
-          <span class="hits">24</span>
+        <li class="covered" data-hits="25" data-linenumber="29">
+          <span class="hits">25</span>
           
           <code class="ruby">      if @request[:path] == &#39;/&#39;</code>
         </li>
@@ -552,8 +552,8 @@
           <code class="ruby">        output = @path.get_path_root(@request)</code>
         </li>
       
-        <li class="covered" data-hits="23" data-linenumber="31">
-          <span class="hits">23</span>
+        <li class="covered" data-hits="24" data-linenumber="31">
+          <span class="hits">24</span>
           
           <code class="ruby">      elsif @request[:path] == &#39;/hello&#39;</code>
         </li>
@@ -564,8 +564,8 @@
           <code class="ruby">        output = @path.get_path_hello</code>
         </li>
       
-        <li class="covered" data-hits="18" data-linenumber="33">
-          <span class="hits">18</span>
+        <li class="covered" data-hits="19" data-linenumber="33">
+          <span class="hits">19</span>
           
           <code class="ruby">      elsif @request[:path] == &#39;/datetime&#39;</code>
         </li>
@@ -576,8 +576,8 @@
           <code class="ruby">        output = @path.get_path_datetime</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="35">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="17" data-linenumber="35">
+          <span class="hits">17</span>
           
           <code class="ruby">      elsif @request[:path] == &#39;/shutdown&#39;</code>
         </li>
@@ -588,8 +588,8 @@
           <code class="ruby">        output = @path.get_path_shutdown(@total_requests)</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="37">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="9" data-linenumber="37">
+          <span class="hits">9</span>
           
           <code class="ruby">      elsif @request[:path] == &#39;/word_search&#39;</code>
         </li>
@@ -600,8 +600,8 @@
           <code class="ruby">        output = @path.get_path_word_search(request)</code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="39">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="6" data-linenumber="39">
+          <span class="hits">6</span>
           
           <code class="ruby">      elsif @request[:path] == &#39;/start_game&#39;</code>
         </li>
@@ -612,8 +612,8 @@
           <code class="ruby">        output = @path.get_path_start_game</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="41">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="4" data-linenumber="41">
+          <span class="hits">4</span>
           
           <code class="ruby">      elsif @request[:path] == &#39;/game&#39;</code>
         </li>
@@ -624,14 +624,14 @@
           <code class="ruby">        output = @path.get_path_game(request)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="43">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="43">
+          <span class="hits">3</span>
           
           <code class="ruby">      elsif @request[:path] == &#39;/force_error&#39;</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="44">
-          
+        <li class="covered" data-hits="1" data-linenumber="44">
+          <span class="hits">1</span>
           
           <code class="ruby">        output = @path.get_path_error</code>
         </li>
@@ -1302,14 +1302,14 @@
           <code class="ruby">    def initialize</code>
         </li>
       
-        <li class="covered" data-hits="42" data-linenumber="15">
-          <span class="hits">42</span>
+        <li class="covered" data-hits="43" data-linenumber="15">
+          <span class="hits">43</span>
           
           <code class="ruby">      @word_search = WordSearch.new</code>
         </li>
       
-        <li class="covered" data-hits="42" data-linenumber="16">
-          <span class="hits">42</span>
+        <li class="covered" data-hits="43" data-linenumber="16">
+          <span class="hits">43</span>
           
           <code class="ruby">      @count = 0</code>
         </li>
@@ -1494,14 +1494,14 @@
           <code class="ruby">    def get_path_error</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="47">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="47">
+          <span class="hits">3</span>
           
           <code class="ruby">      @status_code = internal_server_error</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="48">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="48">
+          <span class="hits">3</span>
           
           <code class="ruby">      raise SystemError</code>
         </li>
@@ -1512,8 +1512,8 @@
           <code class="ruby">      rescue =&gt; detail</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="50">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="3" data-linenumber="50">
+          <span class="hits">3</span>
           
           <code class="ruby">      detail.backtrace.join(&quot;\n&quot;)</code>
         </li>
@@ -2088,8 +2088,8 @@
           <code class="ruby">    def internal_server_error</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="24">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="4" data-linenumber="24">
+          <span class="hits">4</span>
           
           <code class="ruby">      &quot;500 Internal Server Error&quot;</code>
         </li>
@@ -2154,8 +2154,8 @@
           <code class="ruby">    def initialize</code>
         </li>
       
-        <li class="covered" data-hits="46" data-linenumber="5">
-          <span class="hits">46</span>
+        <li class="covered" data-hits="47" data-linenumber="5">
+          <span class="hits">47</span>
           
           <code class="ruby">      @dictionary = File.read(&quot;/usr/share/dict/words&quot;)</code>
         </li>
@@ -2265,8 +2265,8 @@
     <h3>test/distributor_test.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>87</b> relevant lines. 
-      <span class="green"><b>87</b> lines covered</span> and
+      <b>91</b> relevant lines. 
+      <span class="green"><b>91</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -2328,8 +2328,8 @@
           <code class="ruby">  def setup</code>
         </li>
       
-        <li class="covered" data-hits="22" data-linenumber="10">
-          <span class="hits">22</span>
+        <li class="covered" data-hits="23" data-linenumber="10">
+          <span class="hits">23</span>
           
           <code class="ruby">    @distributor = HTTP::Distributor.new</code>
         </li>
@@ -2751,97 +2751,97 @@
         <li class="never" data-hits="" data-linenumber="80">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="81">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="82">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="83">
+        <li class="covered" data-hits="1" data-linenumber="82">
           <span class="hits">1</span>
           
           <code class="ruby">  def test_path_checker_sends_to_word_search</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="84">
+        <li class="covered" data-hits="1" data-linenumber="83">
           <span class="hits">1</span>
           
           <code class="ruby">    request_hash = {:verb=&gt;&quot;GET&quot;, :path=&gt;&quot;/word_search&quot;, :word=&gt;&quot;coffee&quot;, :protocol=&gt;&quot;HTTP/1.1&quot;, :host=&gt;&quot; 127.0.0.1&quot;, :port=&gt;&quot;9292&quot;, :origin=&gt;&quot; 127.0.0.1&quot;, :Accept=&gt;&quot;*/*&quot;}</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="85">
+        <li class="covered" data-hits="1" data-linenumber="84">
           <span class="hits">1</span>
           
           <code class="ruby">    assert_equal &quot;Coffee is a known word.&quot;, @distributor.path_checker(request_hash)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="86">
+        <li class="never" data-hits="" data-linenumber="85">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="87">
+        <li class="never" data-hits="" data-linenumber="86">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="88">
+        <li class="covered" data-hits="1" data-linenumber="87">
           <span class="hits">1</span>
           
           <code class="ruby">  def test_path_checker_sends_to_word_search_with_incorrect_word</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="89">
+        <li class="covered" data-hits="1" data-linenumber="88">
           <span class="hits">1</span>
           
           <code class="ruby">    request_hash = {:verb=&gt;&quot;GET&quot;, :path=&gt;&quot;/word_search&quot;, :word=&gt;&quot;cfryye&quot;, :protocol=&gt;&quot;HTTP/1.1&quot;, :host=&gt;&quot; 127.0.0.1&quot;, :port=&gt;&quot;9292&quot;, :origin=&gt;&quot; 127.0.0.1&quot;, :Accept=&gt;&quot;*/*&quot;}</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="90">
+        <li class="covered" data-hits="1" data-linenumber="89">
           <span class="hits">1</span>
           
           <code class="ruby">    assert_equal &quot;Cfryye is not a known word.&quot;, @distributor.path_checker(request_hash)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="91">
+        <li class="never" data-hits="" data-linenumber="90">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="92">
+        <li class="never" data-hits="" data-linenumber="91">
           
           
           <code class="ruby"></code>
         </li>
       
+        <li class="covered" data-hits="1" data-linenumber="92">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def test_path_checker_sends_to_error_path</code>
+        </li>
+      
         <li class="covered" data-hits="1" data-linenumber="93">
           <span class="hits">1</span>
           
-          <code class="ruby">  def test_path_checker_sends_to_404_if_incorrect_path</code>
+          <code class="ruby">    request_hash = {:verb=&gt;&quot;GET&quot;, :path=&gt;&quot;/force_error&quot;, :word=&gt;&quot;cfryye&quot;, :protocol=&gt;&quot;HTTP/1.1&quot;, :host=&gt;&quot; 127.0.0.1&quot;, :port=&gt;&quot;9292&quot;, :origin=&gt;&quot; 127.0.0.1&quot;, :Accept=&gt;&quot;*/*&quot;}</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="94">
           <span class="hits">1</span>
           
-          <code class="ruby">    request_hash = {:verb=&gt;&quot;GET&quot;, :path=&gt;&quot;/lolz&quot;, :protocol=&gt;&quot;HTTP/1.1&quot;, :host=&gt;&quot; 127.0.0.1&quot;, :port=&gt;&quot;9292&quot;, :origin=&gt;&quot; 127.0.0.1&quot;, :Accept=&gt;&quot;*/*&quot;}</code>
+          <code class="ruby">    back_trace = @distributor.path_checker(request_hash)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="95">
           <span class="hits">1</span>
           
-          <code class="ruby">    assert_equal &quot;404 Not Found&quot;, @distributor.path_checker(request_hash)</code>
+          <code class="ruby">    assert back_trace.include?(&quot;Users&quot;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="96">
@@ -2859,13 +2859,13 @@
         <li class="covered" data-hits="1" data-linenumber="98">
           <span class="hits">1</span>
           
-          <code class="ruby">  def test_path_checker_sends_to_404_if_incorrect_path_different</code>
+          <code class="ruby">  def test_path_checker_sends_to_404_if_incorrect_path</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="99">
           <span class="hits">1</span>
           
-          <code class="ruby">    request_hash = {:verb=&gt;&quot;GET&quot;, :path=&gt;&quot;/wowww&quot;, :protocol=&gt;&quot;HTTP/1.1&quot;, :host=&gt;&quot; 127.0.0.1&quot;, :port=&gt;&quot;9292&quot;, :origin=&gt;&quot; 127.0.0.1&quot;, :Accept=&gt;&quot;*/*&quot;}</code>
+          <code class="ruby">    request_hash = {:verb=&gt;&quot;GET&quot;, :path=&gt;&quot;/lolz&quot;, :protocol=&gt;&quot;HTTP/1.1&quot;, :host=&gt;&quot; 127.0.0.1&quot;, :port=&gt;&quot;9292&quot;, :origin=&gt;&quot; 127.0.0.1&quot;, :Accept=&gt;&quot;*/*&quot;}</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="100">
@@ -2889,202 +2889,232 @@
         <li class="covered" data-hits="1" data-linenumber="103">
           <span class="hits">1</span>
           
-          <code class="ruby">  def test_shutdown_returns_correct_total_requests_for_one</code>
+          <code class="ruby">  def test_path_checker_sends_to_404_if_incorrect_path_different</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="104">
           <span class="hits">1</span>
           
-          <code class="ruby">    request_hash = {:verb=&gt;&quot;GET&quot;, :path=&gt;&quot;/shutdown&quot;, :protocol=&gt;&quot;HTTP/1.1&quot;, :host=&gt;&quot; 127.0.0.1&quot;, :port=&gt;&quot;9292&quot;, :origin=&gt;&quot; 127.0.0.1&quot;, :Accept=&gt;&quot;*/*&quot;}</code>
+          <code class="ruby">    request_hash = {:verb=&gt;&quot;GET&quot;, :path=&gt;&quot;/wowww&quot;, :protocol=&gt;&quot;HTTP/1.1&quot;, :host=&gt;&quot; 127.0.0.1&quot;, :port=&gt;&quot;9292&quot;, :origin=&gt;&quot; 127.0.0.1&quot;, :Accept=&gt;&quot;*/*&quot;}</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="105">
           <span class="hits">1</span>
           
-          <code class="ruby">    @distributor.redirect_request(request_hash)</code>
+          <code class="ruby">    assert_equal &quot;404 Not Found&quot;, @distributor.path_checker(request_hash)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="106">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="106">
           
-          <code class="ruby">    assert_equal &quot;Total Requests: 1&quot;, @distributor.path_checker(request_hash)</code>
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="107">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="108">
+        <li class="covered" data-hits="1" data-linenumber="108">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">  def test_shutdown_returns_correct_total_requests_for_one</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="109">
           <span class="hits">1</span>
           
-          <code class="ruby">  def test_shutdown_returns_correct_total_requests_for_multiples</code>
+          <code class="ruby">    request_hash = {:verb=&gt;&quot;GET&quot;, :path=&gt;&quot;/shutdown&quot;, :protocol=&gt;&quot;HTTP/1.1&quot;, :host=&gt;&quot; 127.0.0.1&quot;, :port=&gt;&quot;9292&quot;, :origin=&gt;&quot; 127.0.0.1&quot;, :Accept=&gt;&quot;*/*&quot;}</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="110">
           <span class="hits">1</span>
           
-          <code class="ruby">    request_hash = {:verb=&gt;&quot;GET&quot;, :path=&gt;&quot;/shutdown&quot;, :protocol=&gt;&quot;HTTP/1.1&quot;, :host=&gt;&quot; 127.0.0.1&quot;, :port=&gt;&quot;9292&quot;, :origin=&gt;&quot; 127.0.0.1&quot;, :Accept=&gt;&quot;*/*&quot;}</code>
+          <code class="ruby">    @distributor.redirect_request(request_hash)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="111">
           <span class="hits">1</span>
           
-          <code class="ruby">    @distributor.redirect_request(request_hash)</code>
+          <code class="ruby">    assert_equal &quot;Total Requests: 1&quot;, @distributor.path_checker(request_hash)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="112">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="112">
           
-          <code class="ruby">    @distributor.redirect_request(request_hash)</code>
+          
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="113">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="113">
           
-          <code class="ruby">    @distributor.redirect_request(request_hash)</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="114">
           <span class="hits">1</span>
           
-          <code class="ruby">    @distributor.redirect_request(request_hash)</code>
+          <code class="ruby">  def test_shutdown_returns_correct_total_requests_for_multiples</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="115">
           <span class="hits">1</span>
           
-          <code class="ruby">    assert_equal &quot;Total Requests: 4&quot;, @distributor.path_checker(request_hash)</code>
+          <code class="ruby">    request_hash = {:verb=&gt;&quot;GET&quot;, :path=&gt;&quot;/shutdown&quot;, :protocol=&gt;&quot;HTTP/1.1&quot;, :host=&gt;&quot; 127.0.0.1&quot;, :port=&gt;&quot;9292&quot;, :origin=&gt;&quot; 127.0.0.1&quot;, :Accept=&gt;&quot;*/*&quot;}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="116">
+        <li class="covered" data-hits="1" data-linenumber="116">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">  end</code>
+          <code class="ruby">    @distributor.redirect_request(request_hash)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="117">
+        <li class="covered" data-hits="1" data-linenumber="117">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">    @distributor.redirect_request(request_hash)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="118">
           <span class="hits">1</span>
           
-          <code class="ruby">  def test_generate_output_Output_returns_with_html_wrap</code>
+          <code class="ruby">    @distributor.redirect_request(request_hash)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="119">
           <span class="hits">1</span>
           
-          <code class="ruby">    output = &quot;Total Requests: 1&quot;</code>
+          <code class="ruby">    @distributor.redirect_request(request_hash)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="120">
           <span class="hits">1</span>
           
-          <code class="ruby">    @distributor.generate_output(output)</code>
+          <code class="ruby">    assert_equal &quot;Total Requests: 4&quot;, @distributor.path_checker(request_hash)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="121">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="121">
           
-          <code class="ruby">    assert_equal &quot;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;pre&gt;Total Requests: 1&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;&quot;, @distributor.output</code>
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="122">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="123">
+        <li class="covered" data-hits="1" data-linenumber="123">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">  def test_generate_output_Output_returns_with_html_wrap</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="124">
           <span class="hits">1</span>
           
-          <code class="ruby">  def test_generate_output_header_has_correct_beginning</code>
+          <code class="ruby">    output = &quot;Total Requests: 1&quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="125">
           <span class="hits">1</span>
           
-          <code class="ruby">    output = &quot;Total Requests: 1&quot;</code>
+          <code class="ruby">    @distributor.generate_output(output)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="126">
           <span class="hits">1</span>
           
-          <code class="ruby">    @distributor.generate_output(output)</code>
+          <code class="ruby">    assert_equal &quot;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;pre&gt;Total Requests: 1&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;&quot;, @distributor.output</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="127">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="127">
           
-          <code class="ruby">    assert_equal &quot;http/1.1&quot;, @distributor.header.split[0]</code>
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="128">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="129">
+        <li class="covered" data-hits="1" data-linenumber="129">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">  def test_generate_output_header_has_correct_beginning</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="130">
           <span class="hits">1</span>
           
-          <code class="ruby">  def test_generate_output_gives_correct_header_for_a_diff_status_code</code>
+          <code class="ruby">    output = &quot;Total Requests: 1&quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="131">
           <span class="hits">1</span>
           
-          <code class="ruby">    output = &quot;Total Requests: 1&quot;</code>
+          <code class="ruby">    @distributor.generate_output(output)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="132">
           <span class="hits">1</span>
           
-          <code class="ruby">    @distributor.generate_output(output, &quot;404 Not Found&quot;)</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="133">
-          <span class="hits">1</span>
-          
           <code class="ruby">    assert_equal &quot;http/1.1&quot;, @distributor.header.split[0]</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="134">
+        <li class="never" data-hits="" data-linenumber="133">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="135">
+        <li class="never" data-hits="" data-linenumber="134">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="136">
+        <li class="covered" data-hits="1" data-linenumber="135">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def test_generate_output_gives_correct_header_for_a_diff_status_code</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="136">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    output = &quot;Total Requests: 1&quot;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="137">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @distributor.generate_output(output, &quot;404 Not Found&quot;)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="138">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    assert_equal &quot;http/1.1&quot;, @distributor.header.split[0]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="139">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="140">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="141">
           
           
           <code class="ruby">end</code>
