@@ -24,7 +24,7 @@ class GameTest < Minitest::Test
 
   def test_game_tells_correct
     @game.game_turn(42, "POST")
-    assert_equal "You got it right! Way to go!", @game.guess_check
+    assert_equal "You got it right! Way to go! The number has been changed, try again!", @game.guess_check
   end
 
   def test_game_counter_increments_correctly

@@ -76,12 +76,12 @@ class DistributorTest < Minitest::Test
 
   def test_path_checker_sends_to_word_search
     request_hash = {:verb=>"GET", :path=>"/word_search", :word=>"coffee", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
-    assert_equal "coffee is a known word", @distributor.path_checker(request_hash)
+    assert_equal "Coffee is a known word.", @distributor.path_checker(request_hash)
   end
 
   def test_path_checker_sends_to_word_search_with_incorrect_word
     request_hash = {:verb=>"GET", :path=>"/word_search", :word=>"cfryye", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
-    assert_equal "cfryye is not a known word",   @distributor.path_checker(request_hash)
+    assert_equal "Cfryye is not a known word.",   @distributor.path_checker(request_hash)
   end
 
   def test_path_checker_sends_to_404_if_incorrect_path
@@ -118,13 +118,13 @@ class DistributorTest < Minitest::Test
   def test_generate_output_header_has_correct_beginning
     output = "Total Requests: 1"
     @distributor.generate_output(output)
-    assert_equal "http/1.1 200 OK", @distributor.header[0]
+    assert_equal "http/1.1", @distributor.header.split[0]
   end
 
   def test_generate_output_gives_correct_header_for_a_diff_status_code
     output = "Total Requests: 1"
     @distributor.generate_output(output, "404 Not Found")
-    assert_equal "http/1.1 404 Not Found", @distributor.header[0]
+    assert_equal "http/1.1", @distributor.header.split[0]
   end
 
 end
