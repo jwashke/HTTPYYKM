@@ -18,7 +18,7 @@ class DistributorTest < Minitest::Test
     assert @distributor.path.instance_of? HTTP::Path
   end
 
-  def distributor_initalizes_total_requests_as_zero
+  def test_distributor_initalizes_total_requests_as_zero
     assert_equal 0, @distributor.total_requests
   end
 
@@ -74,6 +74,12 @@ class DistributorTest < Minitest::Test
     assert_equal "Please make a guess between 1 and 100", @distributor.path_checker(request_hash)
   end
 
+  def test_path_checker_sends_to_word_search_if_word_all_caps
+    request_hash = {:verb=>"GET", :path=>"/word_search", :word=>"COFFEE", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
+    assert_equal "Coffee is a known word.", @distributor.path_checker(request_hash)
+
+  end
+
   def test_path_checker_sends_to_word_search
     request_hash = {:verb=>"GET", :path=>"/word_search", :word=>"coffee", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
     assert_equal "Coffee is a known word.", @distributor.path_checker(request_hash)
@@ -81,7 +87,7 @@ class DistributorTest < Minitest::Test
 
   def test_path_checker_sends_to_word_search_with_incorrect_word
     request_hash = {:verb=>"GET", :path=>"/word_search", :word=>"cfryye", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
-    assert_equal "Cfryye is not a known word.",   @distributor.path_checker(request_hash)
+    assert_equal "Cfryye is not a known word.", @distributor.path_checker(request_hash)
   end
 
   def test_path_checker_sends_to_404_if_incorrect_path
@@ -100,7 +106,7 @@ class DistributorTest < Minitest::Test
     assert_equal "Total Requests: 1", @distributor.path_checker(request_hash)
   end
 
-  def test_shutdown_returns_correct_total_requests_for_multiplees
+  def test_shutdown_returns_correct_total_requests_for_multiples
     request_hash = {:verb=>"GET", :path=>"/shutdown", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
     @distributor.redirect_request(request_hash)
     @distributor.redirect_request(request_hash)
