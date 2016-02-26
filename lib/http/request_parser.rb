@@ -1,49 +1,31 @@
 require 'pry'
 module HTTP
   class RequestParser
+
+    attr_reader :raw_request, :request_hash
     def initialize
       @raw_request = []
       @request_hash = {}
     end
 
     def parse_request(raw_request)
+    #  binding.pry
       @raw_request = raw_request
       get_verb_path_protocol_and_args(raw_request.shift)
-      get_host_port_and_origin(raw_request.shift)
-      get_accept(raw_request[4])
-      #better to read each one into a hash. it's not a valid way to read the hash.
-      #you can't assume the order
-      #in Faraday Host is lower. Read them by name.
-      #for example:
-      #lines = ["GET/ HTTP 1.1", "host: pizza", "accept: lol, "]
-      #verb_path_protocol = lines.shift
-      #lines.map {\lines| line.split(": ").to_h}
+      headers_hash = parse_rest_of_request(@raw_request).to_h
+      @request_hash = @request_hash.merge(headers_hash)
       @request_hash
+    end
+
+    def parse_rest_of_request(request)
+      request.map {|line| line.split(': ')}
     end
 
     def get_verb_path_protocol_and_args(line)
-      @request_hash[:verb]     = line.split[0]
-      @request_hash[:path]     = line.split[1].split("?")[0]
-      @request_hash[:word]     = line.split[1].split("?")[1].split("=")[1] if line.include?("?")
-      @request_hash[:protocol] = line.split[2]
-    end
-
-    def get_host_port_and_origin(line)
-      @request_hash[:host]   = line.split(":")[1]
-      @request_hash[:port]   = line.split(":")[2]
-      @request_hash[:origin] = line.split(":")[1]
-    end
-
-    def get_accept(line)
-      @request_hash[:Accept] = line.split[1]
-    end
-
-    def raw_request
-      @raw_request
-    end
-
-    def request_hash
-      @request_hash
+      @request_hash['Verb']     = line.split[0]
+      @request_hash['Path']     = line.split[1].split("?")[0]
+      @request_hash['Word']     = line.split[1].split("?")[1].split("=")[1] if line.include?("?")
+      @request_hash['Protocol'] = line.split[2]
     end
   end
 end

@@ -14,6 +14,7 @@ module HTTP
     def initialize
       @word_search = WordSearch.new
       @count = 0
+      @status_code = ok
     end
 
     def get_path_root(request)
@@ -39,7 +40,7 @@ module HTTP
     end
 
     def get_path_word_search(request)
-      word = request[:word]
+      word = request['Word']
       @word_search.check_word(word)
     end
 
@@ -66,8 +67,8 @@ module HTTP
         "You need to start a new game first"
       else
         @status_code = ok
-        @status_code = found if request[:verb].upcase == 'POST'
-        @game.game_turn(request[:body].to_i, request[:verb])
+        @status_code = found if request['Verb'].upcase == 'POST'
+        @game.game_turn(request['Body'].to_i, request['Verb'])
       end
     end
   end

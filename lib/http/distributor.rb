@@ -26,21 +26,21 @@ module HTTP
   #  generate_output(output)
     def path_checker(request_hash)
       @request = request_hash
-      if @request[:path] == '/'
+      if @request['Path'] == '/'
         output = @path.get_path_root(@request)
-      elsif @request[:path] == '/hello'
+      elsif @request['Path'] == '/hello'
         output = @path.get_path_hello
-      elsif @request[:path] == '/datetime'
+      elsif @request['Path'] == '/datetime'
         output = @path.get_path_datetime
-      elsif @request[:path] == '/shutdown'
+      elsif @request['Path'] == '/shutdown'
         output = @path.get_path_shutdown(@total_requests)
-      elsif @request[:path] == '/word_search'
+      elsif @request['Path'] == '/word_search'
         output = @path.get_path_word_search(request)
-      elsif @request[:path] == '/start_game'
+      elsif @request['Path'] == '/start_game'
         output = @path.get_path_start_game
-      elsif @request[:path] == '/game'
+      elsif @request['Path'] == '/game'
         output = @path.get_path_game(request)
-      elsif @request[:path] == '/force_error'
+      elsif @request['Path'] == '/force_error'
         output = @path.get_path_error
       else
         output = @path.get_path_not_found
@@ -48,6 +48,7 @@ module HTTP
     end
 
     def generate_output(output, status_code = "200 OK")
+      #binding.pry
       @output = generate_html(output)
       @header = generate_header(@output.length, status_code)
     end

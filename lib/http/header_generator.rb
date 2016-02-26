@@ -11,7 +11,8 @@ module HTTP
     end
 
     def header_template(status_code, output_length)
-      ["http/1.1 #{status_code}",
+      #binding.pry
+      ["HTTP/1.1 #{status_code}",
       "date: #{Time.now.strftime('%a, %e %b %Y %H:%M:%S %z')}",
       "server: ruby",
       "content-type: text/html; charset=iso-8859-1",

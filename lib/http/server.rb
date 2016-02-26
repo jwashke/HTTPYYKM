@@ -24,20 +24,21 @@ module HTTP
           start_new_thread(client, distributor)
         end
       end
+      rescue ShutdownException
+        puts "Shutting down"
     end
 
     def start_new_thread(client, distributor)
       request = get_request(client)
       unless request.first.include?('favicon')
-        puts request
         request_hash = parse_and_send_response(request, client, distributor)
       end
-      shutdown_server if request_hash[:path] == '/shutdown'
+      raise ShutdownException if request_hash['Path'] == '/shutdown'
     end
 
     def parse_and_send_response(request, client, distributor)
       request_hash = RequestParser.new.parse_request(request)
-      request_hash[:body] = get_body(request, client)
+      request_hash['Body'] = get_body(request_hash, client)
       header_and_response_redirect(request_hash, client, distributor)
       client.close
       request_hash
@@ -63,17 +64,15 @@ module HTTP
       request
     end
 
-    def get_body(request, client)
-      return nil unless request.join.include?('Content-Length:')
-      body_length = request[1].split[1]
+    def get_body(request_hash, client)
+      return nil unless request_hash.include?('Content-Length')
+      body_length = request_hash['Content-Length']
       client.read(body_length.to_i)
     end
-
-    def shutdown_server
-      puts "Shutting down"
-      exit
-    end
   end
+end
+
+class ShutdownException < RuntimeError
 end
 
 s = HTTP::Server.new
