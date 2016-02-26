@@ -31,10 +31,6 @@ module HTTP
       @request_hash[:Accept] = line.split[1]
     end
 
-    def split_line(index)
-      @raw_request[index].split
-    end
-
     def raw_request
       @raw_request
     end

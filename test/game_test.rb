@@ -1,7 +1,7 @@
+require_relative 'test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/http/game'
-require_relative 'test_helper'
 
 class GameTest < Minitest::Test
   def setup
@@ -24,7 +24,7 @@ class GameTest < Minitest::Test
 
   def test_game_tells_correct
     @game.game_turn(42, "POST")
-    assert_equal "You got it right! Way to go!", @game.guess_check
+    assert_equal "You got it right! Way to go! The number has been changed, try again!", @game.guess_check
   end
 
   def test_game_counter_increments_correctly
@@ -41,7 +41,6 @@ class GameTest < Minitest::Test
     @game.game_turn(12, "POST")
     assert_equal "Your guess was 12. Your guess is too low; try again. Total guesses: 1", @game.game_turn(12, "GET")
   end
-
 end
 
 class HTTP::Game
@@ -49,6 +48,5 @@ class HTTP::Game
     @correct_number = 42
     @game_counter = 0
   end
-
 
 end

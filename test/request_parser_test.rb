@@ -1,3 +1,4 @@
+require_relative 'test_helper'
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/http/request_parser'
@@ -18,7 +19,6 @@ class RequestParserTest < Minitest::Test
   end
 
   def test_request_parser_produces_correct_request_hash
-    skip 
     @distributor = HTTP::Distributor.new
     raw_request = ["GET / HTTP/1.1",
                    "Host: 127.0.0.1:9292",
@@ -29,14 +29,15 @@ class RequestParserTest < Minitest::Test
                    "Accept: */*",
                    "Accept-Encoding: gzip, deflate, sdch",
                    "Accept-Language: en-US,en;q=0.8"]
-    @distributor.parse_request(raw_request)
+    @request_parser.parse_request(raw_request)
     hash = {:verb=>"GET",
             :path=>"/",
             :protocol=>"HTTP/1.1",
-            :host=>"127.0.0.1",
+            :host=>" 127.0.0.1",
             :port=>"9292",
-            :origin=>"127.0.0.1",
+            :origin=>" 127.0.0.1",
             :Accept=>"*/*"}
     assert_equal hash, @request_parser.request_hash
   end
+
 end

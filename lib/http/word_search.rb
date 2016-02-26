@@ -7,7 +7,7 @@ module HTTP
 
     def check_word(word)
       return "Please enter a word" if word.nil?
-      @dictionary.include?(word) ? is_word(word) : is_not_word(word)
+      @dictionary.include?(word.downcase) ? is_word(word.downcase) : is_not_word(word)
     end
 
     def is_word(word)
