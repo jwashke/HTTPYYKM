@@ -39,4 +39,5 @@ class RequestParserTest < Minitest::Test
             :Accept=>"*/*"}
     assert_equal hash, @request_parser.request_hash
   end
+
 end

@@ -41,7 +41,6 @@ class GameTest < Minitest::Test
     @game.game_turn(12, "POST")
     assert_equal "Your guess was 12. Your guess is too low; try again. Total guesses: 1", @game.game_turn(12, "GET")
   end
-
 end
 
 class HTTP::Game
@@ -49,6 +48,5 @@ class HTTP::Game
     @correct_number = 42
     @game_counter = 0
   end
-
 
 end

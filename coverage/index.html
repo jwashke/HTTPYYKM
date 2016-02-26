@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-02-25T17:41:32-07:00">2016-02-25T17:41:32-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-02-25T18:13:45-07:00">2016-02-25T18:13:45-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">97.91%</span></span>
+    (<span class="covered_percent"><span class="green">98.17%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.36
+         2.35
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
-    <b>18</b> files in total.
-    <b>430</b> relevant lines. 
-    <span class="green"><b>421</b> lines covered</span> and
-    <span class="red"><b>9</b> lines missed </span>
+    <b>19</b> files in total.
+    <b>437</b> relevant lines. 
+    <span class="green"><b>429</b> lines covered</span> and
+    <span class="red"><b>8</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -112,11 +112,11 @@
       
       <tr>
         <td class="strong"><a href="#af2767e632477cbee06578fbe7499ffaeab03eba" class="src_link" title="lib/http/request_parser.rb">lib/http/request_parser.rb</a></td>
-        <td class="green strong">93.1 %</td>
-        <td>46</td>
-        <td>29</td>
+        <td class="green strong">96.3 %</td>
+        <td>42</td>
         <td>27</td>
-        <td>2</td>
+        <td>26</td>
+        <td>1</td>
         <td>1.1</td>
       </tr>
       
@@ -153,11 +153,11 @@
       <tr>
         <td class="strong"><a href="#3219c917be592268699df91d929f3ccb64a72fdb" class="src_link" title="test/game_test.rb">test/game_test.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>54</td>
+        <td>52</td>
         <td>33</td>
         <td>33</td>
         <td>0</td>
-        <td>1.8</td>
+        <td>1.9</td>
       </tr>
       
       <tr>
@@ -193,11 +193,21 @@
       <tr>
         <td class="strong"><a href="#e01b71e21290e2bfb1b086371b68601e743aad48" class="src_link" title="test/request_parser_test.rb">test/request_parser_test.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>42</td>
+        <td>43</td>
         <td>19</td>
         <td>19</td>
         <td>0</td>
         <td>1.1</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#127348dd13ee977e63d3b0257b9e61c0b595b6a3" class="src_link" title="test/second_game_test.rb">test/second_game_test.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>15</td>
+        <td>9</td>
+        <td>9</td>
+        <td>0</td>
+        <td>1.0</td>
       </tr>
       
       <tr>
@@ -1659,11 +1669,11 @@
         <div class="source_table" id="af2767e632477cbee06578fbe7499ffaeab03eba">
   <div class="header">
     <h3>lib/http/request_parser.rb</h3>
-    <h4><span class="green">93.1 %</span> covered</h4>
+    <h4><span class="green">96.3 %</span> covered</h4>
     <div>
-      <b>29</b> relevant lines. 
-      <span class="green"><b>27</b> lines covered</span> and
-      <span class="red"><b>2</b> lines missed.</span>
+      <b>27</b> relevant lines. 
+      <span class="green"><b>26</b> lines covered</span> and
+      <span class="red"><b>1</b> lines missed.</span>
     </div>
   </div>
   
@@ -1871,13 +1881,13 @@
         <li class="covered" data-hits="1" data-linenumber="34">
           <span class="hits">1</span>
           
-          <code class="ruby">    def split_line(index)</code>
+          <code class="ruby">    def raw_request</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="35">
           
           
-          <code class="ruby">      @raw_request[index].split</code>
+          <code class="ruby">      @raw_request</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="36">
@@ -1895,13 +1905,13 @@
         <li class="covered" data-hits="1" data-linenumber="38">
           <span class="hits">1</span>
           
-          <code class="ruby">    def raw_request</code>
+          <code class="ruby">    def request_hash</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="39">
+        <li class="covered" data-hits="2" data-linenumber="39">
+          <span class="hits">2</span>
           
-          
-          <code class="ruby">      @raw_request</code>
+          <code class="ruby">      @request_hash</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="40">
@@ -1913,34 +1923,10 @@
         <li class="never" data-hits="" data-linenumber="41">
           
           
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="42">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    def request_hash</code>
-        </li>
-      
-        <li class="covered" data-hits="2" data-linenumber="43">
-          <span class="hits">2</span>
-          
-          <code class="ruby">      @request_hash</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="44">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="45">
-          
-          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="46">
+        <li class="never" data-hits="" data-linenumber="42">
           
           
           <code class="ruby">end</code>
@@ -3347,64 +3333,52 @@
         <li class="never" data-hits="" data-linenumber="44">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="45">
           
           
-          <code class="ruby">end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="46">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="47">
+        <li class="covered" data-hits="1" data-linenumber="46">
           <span class="hits">1</span>
           
           <code class="ruby">class HTTP::Game</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="48">
+        <li class="covered" data-hits="1" data-linenumber="47">
           <span class="hits">1</span>
           
           <code class="ruby">  def initialize</code>
         </li>
       
-        <li class="covered" data-hits="12" data-linenumber="49">
-          <span class="hits">12</span>
+        <li class="covered" data-hits="13" data-linenumber="48">
+          <span class="hits">13</span>
           
           <code class="ruby">    @correct_number = 42</code>
         </li>
       
-        <li class="covered" data-hits="12" data-linenumber="50">
-          <span class="hits">12</span>
+        <li class="covered" data-hits="13" data-linenumber="49">
+          <span class="hits">13</span>
           
           <code class="ruby">    @game_counter = 0</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="51">
+        <li class="never" data-hits="" data-linenumber="50">
           
           
           <code class="ruby">  end</code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="51">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
         <li class="never" data-hits="" data-linenumber="52">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="53">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="54">
           
           
           <code class="ruby">end</code>
@@ -4503,6 +4477,120 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="42">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="43">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+      
+        <div class="source_table" id="127348dd13ee977e63d3b0257b9e61c0b595b6a3">
+  <div class="header">
+    <h3>test/second_game_test.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>9</b> relevant lines. 
+      <span class="green"><b>9</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;test_helper&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;minitest/autorun&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="3">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;minitest/pride&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require_relative &#39;../lib/http/game&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class Game2Test &lt; Minitest::Test</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def setup</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @game_2 = HTTP::Game.new</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="11">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def test_game_counter_is_initalized_at_zero_in_initial_game</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="12">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    assert_equal 0, @game_2.game_counter</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="13">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
           
           
           <code class="ruby">end</code>
