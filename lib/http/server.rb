@@ -1,9 +1,5 @@
 lib_folder = File.expand_path(__dir__)
 $LOAD_PATH << lib_folder
-#if exception occurs in thread, crash exception but not thread
-#Faraday sends request. server makes new request
-#raise an exception
-#if thread crashes all program crashes
 Thread.abort_on_exception = true
 require 'pry'
 require 'socket'
@@ -78,6 +74,7 @@ end
 
 class ShutdownException < RuntimeError
 end
-
-s = HTTP::Server.new
-s.server_start
+if __FILE__==$0
+  s = HTTP::Server.new
+  s.server_start
+end
