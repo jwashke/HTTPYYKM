@@ -67,12 +67,6 @@ class PathTest < Minitest::Test
     assert_equal "302 Found", @path.status_code
   end
 
-  def test_game_start_creates_new_instance_of_game_class
-    skip
-    new_game = @path.get_path_start_game
-    assert new_game.instance_of? HTTP::Game
-  end
-
   def test_game_returns_forbidden_status_code_correctly
     @path.get_path_start_game
     @path.get_path_start_game

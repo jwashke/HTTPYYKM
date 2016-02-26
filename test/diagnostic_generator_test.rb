@@ -32,6 +32,4 @@ class DiagnosticGeneratorTest < Minitest::Test
     assert_equal diagnostic, (@test_helper.request_diagnostic(raw_request)).split
   end
 
-
-
 end
