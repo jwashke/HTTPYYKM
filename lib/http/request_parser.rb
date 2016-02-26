@@ -11,6 +11,13 @@ module HTTP
       get_verb_path_protocol_and_args(raw_request.shift)
       get_host_port_and_origin(raw_request.shift)
       get_accept(raw_request[4])
+      #better to read each one into a hash. it's not a valid way to read the hash.
+      #you can't assume the order
+      #in Faraday Host is lower. Read them by name.
+      #for example:
+      #lines = ["GET/ HTTP 1.1", "host: pizza", "accept: lol, "]
+      #verb_path_protocol = lines.shift
+      #lines.map {\lines| line.split(": ").to_h}
       @request_hash
     end
 
