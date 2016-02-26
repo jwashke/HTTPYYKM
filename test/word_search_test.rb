@@ -23,5 +23,4 @@ class WordSearchTest < Minitest::Test
   def test_word_search_gives_incorrect_word_if_made_up_of_correct_words
     assert_equal "Doubledouble is not a known word.", @word_search.check_word("doubledouble")
   end
-
 end

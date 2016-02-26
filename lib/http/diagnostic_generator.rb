@@ -1,14 +1,13 @@
-require 'pry'
 module HTTP
   module DiagnosticGenerator
     def request_diagnostic(request)
-      "Verb: #{request[:verb]}\n" +
-      "Path: #{request[:path]}\n" +
-      "Protocol: #{request[:protocol]}\n" +
-      "Host: #{request[:host]}\n" +
-      "Port: #{request[:port]}\n" +
-      "Origin: #{request[:origin]}\n" +
-      "Accept: #{request[:accept]}\n"
+      "Verb: #{request['Verb']}\n" +
+      "Path: #{request['Path']}\n" +
+      "Protocol: #{request['Protocol']}\n" +
+      "Host: #{request['Host']}\n" +
+      "Port: #{request['Port']}\n" +
+      "Origin: #{request['Origin']}\n" +
+      "Accept: #{request['Accept']}\n"
     end
   end
 end

@@ -1,7 +1,7 @@
-require_relative 'word_search'
-require_relative 'game'
-require_relative 'diagnostic_generator'
-require_relative 'status_codes'
+require 'word_search'
+require 'game'
+require 'diagnostic_generator'
+require 'status_codes'
 
 module HTTP
   class Path
@@ -18,6 +18,7 @@ module HTTP
     end
 
     def get_path_root(request)
+      @status_code = ok
       request_diagnostic(request)
     end
 
@@ -31,15 +32,18 @@ module HTTP
     end
 
     def get_path_shutdown(total_requests)
+      @status_code = ok
       "Total Requests: #{total_requests}"
     end
 
     def get_path_hello
       @count += 1
+      @status_code = ok
       "Hello World! (#{@count})"
     end
 
     def get_path_word_search(request)
+      @status_code = ok
       word = request['Word']
       @word_search.check_word(word)
     end
@@ -49,6 +53,12 @@ module HTTP
       raise SystemError
       rescue => detail
       detail.backtrace.join("\n")
+    end
+
+    def get_path_sleepy
+      @status_code = ok
+      sleep(3)
+      "yawn..."
     end
 
     def get_path_start_game
@@ -67,7 +77,7 @@ module HTTP
         "You need to start a new game first"
       else
         @status_code = ok
-        @status_code = found if request['Verb'].upcase == 'POST'
+        @status_code = found if request['Verb'] == 'POST'
         @game.game_turn(request['Body'].to_i, request['Verb'])
       end
     end

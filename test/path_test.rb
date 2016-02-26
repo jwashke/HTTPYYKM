@@ -6,6 +6,7 @@ require_relative '../lib/http/path'
 class PathTest < Minitest::Test
   def setup
     @path = HTTP::Path.new
+    @test_helper = TestHelper.new
   end
 
   def test_path_initalizes_count_as_zero
@@ -17,8 +18,8 @@ class PathTest < Minitest::Test
   end
 
   def test_get_path_root_returns_diagnostic_info
-    request_hash = {'Verb'=>"GET", 'Path'=>"/", 'Protocol'=>"HTTP/1.1", 'Host'=>" 127.0.0.1", 'Port'=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
-    assert_equal ["Verb:", "Path:", "Protocol:", "Host:", "Port:", "Origin:", "127.0.0.1", "Accept:"], @path.get_path_root(request_hash).split
+    request_hash = @test_helper.request_hash_root
+    assert_equal @test_helper.diagnostic_post, @path.get_path_root(request_hash).split
   end
 
   def test_get_path_not_found_returns_correct_status_code
@@ -49,13 +50,13 @@ class PathTest < Minitest::Test
   end
 
   def test_returns_correct_word_search_output_for_correct_word
-    request_hash = {'Verb'=>"GET", 'Path'=>"/word_search", 'Word'=>"milk", 'Protocol'=>"HTTP/1.1", 'Host'=>" 127.0.0.1", 'Port'=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
-    assert_equal "Milk is a known word.", @path.get_path_word_search(request_hash)
+    request_hash = @test_helper.request_hash_word_search_coffee
+    assert_equal "Coffee is a known word.", @path.get_path_word_search(request_hash)
   end
 
   def test_returns_correct_word_search_output_for_incorrect_word
-    request_hash = {'Verb'=>"GET", 'Path'=>"/word_search", 'Word'=>"wlekje", 'Protocol'=>"HTTP/1.1", 'Host'=>" 127.0.0.1", 'Port'=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
-    assert_equal "Wlekje is not a known word.", @path.get_path_word_search(request_hash)
+    request_hash = @test_helper.request_hash_word_search_gibberish
+    assert_equal "Cfryye is not a known word.", @path.get_path_word_search(request_hash)
   end
 
   def test_game_starts_with_good_luck_message
@@ -74,30 +75,30 @@ class PathTest < Minitest::Test
   end
 
   def test_game_get_path_game_returns_correct_status_code_if_game_nil
-    request_hash = {'Verb'=>"GET", 'Path'=>"/game", 'Protocol'=>"HTTP/1.1", 'Host'=>" 127.0.0.1", 'Port'=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
+    request_hash = @test_helper.request_hash_game
     @path.get_path_game(request_hash)
     assert_equal "200 OK", @path.status_code
   end
 
   def test_game_get_path_game_returns_prompt_if_no_start_game
-    request_hash = {'Verb'=>"GET", 'Path'=>"/game", 'Protocol'=>"HTTP/1.1", 'Host'=>" 127.0.0.1", 'Port'=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
+    request_hash = @test_helper.request_hash_game
     assert_equal "You need to start a new game first", @path.get_path_game(request_hash)
   end
 
   def test_game_will_redirect_to_game_turn_and_last_guess_if_game_has_begun
-    request_hash = {'Verb'=>"POST", 'Path'=>"/game", 'Protocol'=>"HTTP/1.1", 'Host'=>" 127.0.0.1", 'Port'=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
+    request_hash = @test_helper.request_hash_game
     @path.get_path_start_game
     assert_equal 0, @path.get_path_game(request_hash)
   end
 
   def test_path_error_will_give_error
-    request_hash = {'Verb'=>"POST", 'Path'=>"/force_error", 'Protocol'=>"HTTP/1.1", 'Host'=>" 127.0.0.1", 'Port'=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
+    request_hash = @test_helper.request_hash_force_error
     back_trace = @path.get_path_error
     assert back_trace.include?("Users")
   end
 
   def test_path_error_has_correct_status_code
-    request_hash = {'Verb'=>"POST", 'Path'=>"/force_error", 'Protocol'=>"HTTP/1.1", 'Host'=>" 127.0.0.1", 'Port'=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
+    request_hash = @test_helper.request_hash_force_error
     back_trace = @path.get_path_error
     assert_equal "500 Internal Server Error", @path.status_code
   end

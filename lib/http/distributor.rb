@@ -1,7 +1,8 @@
-require_relative 'html_generator'
-require_relative 'header_generator'
-require_relative 'path'
-require 'pry'
+$LOAD_PATH << File.join(File.dirname(__FILE__))
+
+require 'html_generator'
+require 'header_generator'
+require 'path'
 
 module HTTP
   class Distributor
@@ -24,23 +25,25 @@ module HTTP
     def path_checker(request_hash)
       @request = request_hash
       if @request['Path'] == '/'
-        output = @path.get_path_root(@request)
+        @path.get_path_root(@request)
       elsif @request['Path'] == '/hello'
-        output = @path.get_path_hello
+        @path.get_path_hello
       elsif @request['Path'] == '/datetime'
-        output = @path.get_path_datetime
+        @path.get_path_datetime
       elsif @request['Path'] == '/shutdown'
-        output = @path.get_path_shutdown(@total_requests)
+        @path.get_path_shutdown(@total_requests)
       elsif @request['Path'] == '/word_search'
-        output = @path.get_path_word_search(request)
+        @path.get_path_word_search(request)
       elsif @request['Path'] == '/start_game'
-        output = @path.get_path_start_game
+        @path.get_path_start_game
       elsif @request['Path'] == '/game'
-        output = @path.get_path_game(request)
+        @path.get_path_game(request)
       elsif @request['Path'] == '/force_error'
-        output = @path.get_path_error
+        @path.get_path_error
+      elsif @request['Path'] == '/sleepy'
+        @path.get_path_sleepy
       else
-        output = @path.get_path_not_found
+        @path.get_path_not_found
       end
     end
 

@@ -11,5 +11,4 @@ class Game2Test < Minitest::Test
   def test_game_counter_is_initalized_at_zero_in_initial_game
     assert_equal 0, @game_2.game_counter
   end
-
 end

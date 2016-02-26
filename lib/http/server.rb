@@ -1,22 +1,23 @@
-lib_folder = File.expand_path(__dir__)
-$LOAD_PATH << lib_folder
+$LOAD_PATH << File.join(File.dirname(__FILE__))
+
 Thread.abort_on_exception = true
-require 'pry'
+
 require 'socket'
 require 'distributor'
 require 'request_parser'
+
 module HTTP
+
+  attr_reader :tcp_server, :distributor
+
   class Server
-    def initialize
-      @tcp_server = TCPServer.open(9292)
-      @distributor = Distributor.new
-    end
 
     def server_start
+      tcp_server = TCPServer.open(9292)
       distributor = Distributor.new
       loop do
         puts "Ready for a request"
-        Thread.new(@tcp_server.accept) do |client|
+        Thread.new(tcp_server.accept) do |client|
           start_new_thread(client, distributor)
         end
       end
@@ -28,8 +29,8 @@ module HTTP
       request = get_request(client)
       unless request.first.include?('favicon')
         request_hash = parse_and_send_response(request, client, distributor)
+        raise ShutdownException if request_hash['Path'] == '/shutdown'
       end
-      raise ShutdownException if request_hash['Path'] == '/shutdown'
     end
 
     def parse_and_send_response(request, client, distributor)
