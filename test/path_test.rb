@@ -90,4 +90,16 @@ class PathTest < Minitest::Test
     assert_equal 0, @path.get_path_game(request_hash)
   end
 
+  def test_path_error_will_give_error
+    request_hash = {:verb=>"POST", :path=>"/force_error", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
+    back_trace = @path.get_path_error
+    assert back_trace.include?("Users")
+  end
+
+  def test_path_error_has_correct_status_code
+    request_hash = {:verb=>"POST", :path=>"/force_error", :protocol=>"HTTP/1.1", :host=>" 127.0.0.1", :port=>"9292", :origin=>" 127.0.0.1", :Accept=>"*/*"}
+    back_trace = @path.get_path_error
+    assert_equal "500 Internal Server Error", @path.status_code   
+  end
+
 end
